@@ -1,6 +1,4 @@
 
-import { Link } from "react-router-dom";
-
 const Index = () => {
   return (
     <div className="min-h-screen">
@@ -13,22 +11,22 @@ const Index = () => {
         />
         <div className="absolute bottom-32 w-full flex flex-col items-center gap-8">
           <div className="flex gap-8">
-            <Link
-              to="/palvelut/pariterapia"
+            <a
+              href="https://vello.fi/lav-coaching"
+              target="_blank"
+              rel="noopener noreferrer"
               className="px-8 py-4 border-2 border-white text-white hover:bg-white/20 transition-colors rounded-lg"
             >
-              Varaa aika
-            </Link>
-            <Link
-              to="/palvelut/lyhytterapia"
+              Varaa aika pariterapiaan
+            </a>
+            <a
+              href="https://vello.fi/aino-pekkarinen"
+              target="_blank"
+              rel="noopener noreferrer"
               className="px-8 py-4 border-2 border-white text-white hover:bg-white/20 transition-colors rounded-lg"
             >
-              Varaa aika
-            </Link>
-          </div>
-          <div className="flex gap-24 text-white">
-            <span>Pariterapiaan</span>
-            <span>Yksilöterapiaan</span>
+              Varaa aika lyhytterapiaan
+            </a>
           </div>
         </div>
       </div>
@@ -41,7 +39,7 @@ const Index = () => {
             className="relative group overflow-hidden"
           >
             <img
-              src="/lovable-uploads/26dc5ff5-e153-4729-8dc3-1cee1e32f411.png"
+              src="/lovable-uploads/0597ecf4-aacd-42b6-bfa6-1a6f1cc6c649.png"
               alt="Pariterapia"
               className="w-full aspect-square object-cover transition-transform group-hover:scale-105"
             />
@@ -55,7 +53,7 @@ const Index = () => {
             className="relative group overflow-hidden"
           >
             <img
-              src="/lovable-uploads/26dc5ff5-e153-4729-8dc3-1cee1e32f411.png"
+              src="/lovable-uploads/81e208dd-6290-4eac-b9a1-a40894223f43.png"
               alt="Lyhytterapia"
               className="w-full aspect-square object-cover transition-transform group-hover:scale-105"
             />
@@ -69,7 +67,7 @@ const Index = () => {
             className="relative group overflow-hidden"
           >
             <img
-              src="/lovable-uploads/26dc5ff5-e153-4729-8dc3-1cee1e32f411.png"
+              src="/lovable-uploads/e826cca7-a3ac-482e-860e-4cc69502db6a.png"
               alt="Puheenvuorot"
               className="w-full aspect-square object-cover transition-transform group-hover:scale-105"
             />

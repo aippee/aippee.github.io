@@ -9,23 +9,19 @@ import {
 
 const Navigation = () => {
   return (
-    <nav className="fixed w-full bg-white/80 backdrop-blur-sm z-50 shadow-sm">
+    <nav className="absolute w-full z-50">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="flex justify-between items-center h-16">
-          <Link to="/" className="text-black font-semibold">
-            Logo
-          </Link>
-          
-          <div className="flex gap-6 items-center">
-            <Link to="/" className="text-black hover:text-[#c0c0c0] transition-colors">
+        <div className="flex justify-end items-center h-16">
+          <div className="flex gap-6 items-center text-white">
+            <Link to="/" className="hover:text-[#c0c0c0] transition-colors">
               Koti
             </Link>
-            <Link to="/minusta" className="text-black hover:text-[#c0c0c0] transition-colors">
+            <Link to="/minusta" className="hover:text-[#c0c0c0] transition-colors">
               Minusta
             </Link>
             
             <DropdownMenu>
-              <DropdownMenuTrigger className="text-black hover:text-[#c0c0c0] transition-colors">
+              <DropdownMenuTrigger className="hover:text-[#c0c0c0] transition-colors">
                 Palvelut
               </DropdownMenuTrigger>
               <DropdownMenuContent className="bg-white">
@@ -47,7 +43,7 @@ const Navigation = () => {
               </DropdownMenuContent>
             </DropdownMenu>
             
-            <Link to="/yhteydenotto" className="text-black hover:text-[#c0c0c0] transition-colors">
+            <Link to="/yhteydenotto" className="hover:text-[#c0c0c0] transition-colors">
               Yhteydenotto
             </Link>
           </div>
