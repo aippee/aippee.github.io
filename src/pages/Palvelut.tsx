@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -7,6 +8,8 @@ import { toast } from "sonner";
 
 const Palvelut = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const pageUrl = window.location.href;
+  const heroImageUrl = `${import.meta.env.BASE_URL}lovable-uploads/IMG_5104.JPG`;
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -38,8 +41,60 @@ const Palvelut = () => {
     setIsSubmitting(false);
   };
 
+  const schemaData = {
+    "@context": "https://schema.org",
+    "@type": "Psychologist",
+    "name": "Aino Pekkarinen",
+    "description": "Tarjoan pariterapiaa, lyhytterapiaa ja puheenvuoroja tukemaan ihmissuhteita ja mielen hyvinvointia.",
+    "url": pageUrl,
+    "image": heroImageUrl,
+    "makesOffer": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Pariterapia",
+          "description": "Pariterapiaa tunnekeskeisen pariterapian viitekehyksessä etäisyyden, konfliktien, luottamushaasteiden ja läheisyyden teemojen työstämiseen.",
+          "url": "https://vello.fi/lav-coaching"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Lyhytterapia",
+          "description": "Yksilöllistä lyhytterapiaa kuormittaviin elämäntilanteisiin, ihmissuhdehaasteisiin, ahdistus- tai masennusoireisiin tai itsetuntemuksen lisäämiseen.",
+          "url": "https://pro.vello.fi/aino-pekkarinen/service"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Puheenvuorot",
+          "description": "Räätälöityjä puheenvuoroja ihmissuhteista, rakkauden psykologiasta, vuorovaikutus- ja tunnetaidoista tapahtumiin."
+        }
+      }
+    ]
+  };
+
   return (
     <div className="min-h-screen">
+      <Helmet>
+        <title>Palvelut: Pariterapia, Lyhytterapia, Puheenvuorot | Aino Pekkarinen</title>
+        <meta name="description" content="Tutustu Aino Pekkarisen palveluihin: ammattitaitoinen pariterapia, tukea antava lyhytterapia ja oivaltavat puheenvuorot ihmissuhteista ja hyvinvoinnista." />
+        
+        <meta property="og:title" content="Palvelut: Pariterapia, Lyhytterapia, Puheenvuorot | Aino Pekkarinen" />
+        <meta property="og:description" content="Tarjoan pariterapiaa, lyhytterapiaa ja asiantuntevia puheenvuoroja. Varaa aika tai kysy lisää!" />
+        <meta property="og:image" content={heroImageUrl} />
+        <meta property="og:url" content={pageUrl} />
+        <meta property="og:type" content="website" />
+
+        <script type="application/ld+json">
+          {JSON.stringify(schemaData)}
+        </script>
+      </Helmet>
+
       {/* Hero Section - Adjusted height and font size */}
       <div className="relative h-[40vh] md:h-[50vh]">
         <img
@@ -89,7 +144,7 @@ const Palvelut = () => {
             <div className="relative aspect-square overflow-hidden rounded-lg">
               <img
                 src={`${import.meta.env.BASE_URL}lovable-uploads/0597ecf4-aacd-42b6-bfa6-1a6f1cc6c649.png`}
-                alt="Pariterapia"
+                alt="Pariskunta kävelee metsässä - Pariterapia palvelu"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -104,7 +159,7 @@ const Palvelut = () => {
             <div className="relative aspect-square overflow-hidden rounded-lg order-first md:order-1">
               <img
                 src={`${import.meta.env.BASE_URL}lovable-uploads/81e208dd-6290-4eac-b9a1-a40894223f43.png`}
-                alt="Lyhytterapia"
+                alt="Henkilö katsoo ikkunasta ulos - Lyhytterapia palvelu"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -160,7 +215,7 @@ const Palvelut = () => {
             <div className="relative aspect-square overflow-hidden rounded-lg">
               <img
                 src={`${import.meta.env.BASE_URL}lovable-uploads/e826cca7-a3ac-482e-860e-4cc69502db6a.png`}
-                alt="Puheenvuorot"
+                alt="Nainen puhuu mikrofoniin - Puheenvuorot palvelu"
                 className="w-full h-full object-cover"
               />
             </div>

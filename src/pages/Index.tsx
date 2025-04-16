@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -9,6 +10,8 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 
 const Index = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const pageUrl = window.location.href;
+  const heroImageUrl = `${import.meta.env.BASE_URL}lovable-uploads/26dc5ff5-e153-4729-8dc3-1cee1e32f411.png`;
   
   const testimonials = [
     "Olit hyvä luomaan meidän välille parempaa ymmärrystä. Teet todella hyvää psykologin työtä ja olimme molemmat tosi tyytyväisiä. Olit hyvä pitämään keskustelussa punaista lankaa ja nostamaan esiin tunnepuolta ja ymmärrystä toisiamme kohtaan.",
@@ -47,13 +50,37 @@ const Index = () => {
     setIsSubmitting(false);
   };
 
+  const schemaData = {
+    "@context": "https://schema.org",
+    "@type": "Psychologist",
+    "name": "Aino Pekkarinen",
+    "image": `${import.meta.env.BASE_URL}lovable-uploads/Kuva1.jpg`,
+    "description": "Tarjoan pariterapiaa ja lyhytterapiaa mielen hyvinvoinnin tukemiseksi.",
+    "url": pageUrl,
+  };
+
   return (
     <div className="min-h-screen">
+      <Helmet>
+        <title>Pariterapia ja Lyhytterapia | Aino Pekkarinen</title>
+        <meta name="description" content="Aino Pekkarinen tarjoaa ammattitaitoista pariterapiaa ja lyhytterapiaa tukemaan parisuhdetta ja mielen hyvinvointia. Varaa aikasi helposti." />
+        
+        <meta property="og:title" content="Pariterapia ja Lyhytterapia | Aino Pekkarinen" />
+        <meta property="og:description" content="Ammattitaitoista pariterapiaa ja lyhytterapiaa Helsingissä. Tukea parisuhteeseen ja mielen hyvinvointiin." />
+        <meta property="og:image" content={heroImageUrl} />
+        <meta property="og:url" content={pageUrl} />
+        <meta property="og:type" content="website" />
+
+        <script type="application/ld+json">
+          {JSON.stringify(schemaData)}
+        </script>
+      </Helmet>
+
       {/* Hero Section - Adjusted height and button layout/size */}
       <div className="relative h-[75vh] md:h-screen">
         <img
-          src={`${import.meta.env.BASE_URL}lovable-uploads/26dc5ff5-e153-4729-8dc3-1cee1e32f411.png`}
-          alt="Hero"
+          src={heroImageUrl}
+          alt="Rauhallinen maisemakuva meren rannalta auringonlaskun aikaan - Aino Pekkarinen Terapia"
           className="w-full h-full object-cover"
         />
         <div className="absolute bottom-16 md:bottom-32 w-full flex flex-col items-center gap-4 md:gap-8 px-4">
@@ -81,9 +108,9 @@ const Index = () => {
       {/* Quote Section - Adjusted padding and font size */}
       <div className="w-full bg-white py-8 md:py-16">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-2xl md:text-4xl font-semibold text-gray-800">
+          <h1 className="text-2xl md:text-4xl font-semibold text-gray-800">
             Tukenasi rakentamassa läheisiä ja kestäviä rakkaussuhteita sekä mielen hyvinvointia.
-          </h2>
+          </h1>
         </div>
       </div>
 
@@ -96,7 +123,7 @@ const Index = () => {
           >
             <img
               src={`${import.meta.env.BASE_URL}lovable-uploads/0597ecf4-aacd-42b6-bfa6-1a6f1cc6c649.png`}
-              alt="Pariterapia"
+              alt="Pariskunta kävelee käsi kädessä metsäpolulla - Pariterapia Aino Pekkarinen"
               className="w-full aspect-square object-cover transition-transform group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-black/40 flex items-center justify-center p-4">
@@ -110,7 +137,7 @@ const Index = () => {
           >
             <img
               src={`${import.meta.env.BASE_URL}lovable-uploads/81e208dd-6290-4eac-b9a1-a40894223f43.png`}
-              alt="Lyhytterapia"
+              alt="Henkilö istuu rauhassa katsoen ikkunasta ulos - Lyhytterapia Aino Pekkarinen"
               className="w-full aspect-square object-cover transition-transform group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-black/40 flex items-center justify-center p-4">
@@ -124,7 +151,7 @@ const Index = () => {
           >
             <img
               src={`${import.meta.env.BASE_URL}lovable-uploads/e826cca7-a3ac-482e-860e-4cc69502db6a.png`}
-              alt="Puheenvuorot"
+              alt="Nainen puhuu mikrofoniin yleisölle - Puheenvuorot Aino Pekkarinen"
               className="w-full aspect-square object-cover transition-transform group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-black/40 flex items-center justify-center p-4">
