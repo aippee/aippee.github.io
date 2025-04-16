@@ -1,5 +1,4 @@
-
-import { useState } from "react";
+import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
@@ -40,51 +39,63 @@ const Yhteydenotto = () => {
   };
 
   return (
-    <div className="min-h-screen pt-16">
-      <div className="max-w-2xl mx-auto px-4 py-16">
-        <h1 className="text-4xl font-semibold mb-8">Yhteydenotto</h1>
+    <div className="min-h-screen bg-black flex items-center justify-center text-white">
+      <div className="max-w-md w-full px-8 py-12">
+        <h1 className="text-4xl font-bold text-center mb-12">YHTEYDENOTTO</h1>
         
-        <form onSubmit={onSubmit} className="space-y-6">
-          <div className="space-y-2">
-            <Label htmlFor="name">Nimi</Label>
+        <form onSubmit={onSubmit} className="space-y-8">
+          <div className="space-y-1">
             <Input
               id="name"
               name="name"
               type="text"
               required
-              placeholder="Kirjoita nimesi"
+              placeholder="Nimi:"
+              className="bg-transparent border-0 border-b border-white rounded-none text-white focus:ring-0 focus:border-white px-0 py-2 placeholder:text-gray-400"
             />
           </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="email">Sähköposti</Label>
+          <div className="space-y-1">
             <Input
               id="email"
               name="email"
               type="email"
               required
-              placeholder="Kirjoita sähköpostiosoitteesi"
+              placeholder="Sähköposti:"
+              className="bg-transparent border-0 border-b border-white rounded-none text-white focus:ring-0 focus:border-white px-0 py-2 placeholder:text-gray-400"
             />
           </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="message">Viesti</Label>
+          <div className="space-y-1">
+            <Input
+              id="phone"
+              name="phone"
+              type="tel"
+              placeholder="Puhelin:"
+              className="bg-transparent border-0 border-b border-white rounded-none text-white focus:ring-0 focus:border-white px-0 py-2 placeholder:text-gray-400"
+            />
+          </div>
+
+          <div className="space-y-1">
             <Textarea
               id="message"
               name="message"
               required
-              placeholder="Kirjoita viestisi tähän"
-              className="min-h-[150px]"
+              placeholder="Viesti:"
+              className="bg-transparent border-0 border-b border-white rounded-none text-white focus:ring-0 focus:border-white px-0 py-2 min-h-[100px] resize-none placeholder:text-gray-400"
             />
           </div>
 
-          <Button 
-            type="submit" 
-            className="w-full"
-            disabled={isSubmitting}
-          >
-            {isSubmitting ? "Lähetetään..." : "Lähetä viesti"}
-          </Button>
+          <div className="flex justify-center pt-4">
+            <Button 
+              type="submit" 
+              className="rounded-full px-12 py-2 bg-transparent border border-white text-white hover:bg-white hover:text-black transition-colors"
+              disabled={isSubmitting}
+              style={{ textTransform: 'uppercase' }}
+            >
+              {isSubmitting ? "Lähetetään..." : "Lähetä"}
+            </Button>
+          </div>
         </form>
       </div>
     </div>
