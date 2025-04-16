@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Input } from "@/components/ui/input";
@@ -48,20 +49,20 @@ const Index = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <div className="relative h-screen">
+      {/* Hero Section - Adjusted height and button layout/size */}
+      <div className="relative h-[75vh] md:h-screen">
         <img
-          src="/lovable-uploads/26dc5ff5-e153-4729-8dc3-1cee1e32f411.png"
+          src={`${import.meta.env.BASE_URL}lovable-uploads/26dc5ff5-e153-4729-8dc3-1cee1e32f411.png`}
           alt="Hero"
           className="w-full h-full object-cover"
         />
-        <div className="absolute bottom-32 w-full flex flex-col items-center gap-8">
-          <div className="flex gap-8">
+        <div className="absolute bottom-16 md:bottom-32 w-full flex flex-col items-center gap-4 md:gap-8 px-4">
+          <div className="flex flex-col md:flex-row md:justify-center gap-4 md:gap-8 w-full max-w-xs md:max-w-none">
             <a
               href="https://vello.fi/lav-coaching"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-4 border-2 border-white text-white hover:bg-white/20 transition-colors rounded-lg"
+              className="px-6 py-3 md:px-8 md:py-4 text-sm md:text-base text-center border-2 border-white text-white hover:bg-white/20 transition-colors rounded-lg"
             >
               Varaa aika pariterapiaan
             </a>
@@ -69,7 +70,7 @@ const Index = () => {
               href="https://vello.fi/aino-pekkarinen"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-4 border-2 border-white text-white hover:bg-white/20 transition-colors rounded-lg"
+              className="px-6 py-3 md:px-8 md:py-4 text-sm md:text-base text-center border-2 border-white text-white hover:bg-white/20 transition-colors rounded-lg"
             >
               Varaa aika lyhytterapiaan
             </a>
@@ -77,29 +78,29 @@ const Index = () => {
         </div>
       </div>
 
-      {/* Quote Section */}
-      <div className="w-full bg-white py-16">
+      {/* Quote Section - Adjusted padding and font size */}
+      <div className="w-full bg-white py-8 md:py-16">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-semibold text-gray-800">
+          <h2 className="text-2xl md:text-4xl font-semibold text-gray-800">
             Tukenasi rakentamassa läheisiä ja kestäviä rakkaussuhteita sekä mielen hyvinvointia.
           </h2>
         </div>
       </div>
 
-      {/* Services Section */}
-      <div className="max-w-7xl mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {/* Services Section - Adjusted padding and gap */}
+      <div className="max-w-7xl mx-auto px-4 py-8 md:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
           <Link 
             to="/palvelut"
             className="relative group overflow-hidden"
           >
             <img
-              src="/lovable-uploads/0597ecf4-aacd-42b6-bfa6-1a6f1cc6c649.png"
+              src={`${import.meta.env.BASE_URL}lovable-uploads/0597ecf4-aacd-42b6-bfa6-1a6f1cc6c649.png`}
               alt="Pariterapia"
               className="w-full aspect-square object-cover transition-transform group-hover:scale-105"
             />
-            <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-              <span className="text-white text-2xl font-semibold">Pariterapia</span>
+            <div className="absolute inset-0 bg-black/40 flex items-center justify-center p-4">
+              <span className="text-white text-xl md:text-2xl font-semibold text-center">Pariterapia</span>
             </div>
           </Link>
 
@@ -108,12 +109,12 @@ const Index = () => {
             className="relative group overflow-hidden"
           >
             <img
-              src="/lovable-uploads/81e208dd-6290-4eac-b9a1-a40894223f43.png"
+              src={`${import.meta.env.BASE_URL}lovable-uploads/81e208dd-6290-4eac-b9a1-a40894223f43.png`}
               alt="Lyhytterapia"
               className="w-full aspect-square object-cover transition-transform group-hover:scale-105"
             />
-            <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-              <span className="text-white text-2xl font-semibold">Lyhytterapia</span>
+            <div className="absolute inset-0 bg-black/40 flex items-center justify-center p-4">
+              <span className="text-white text-xl md:text-2xl font-semibold text-center">Lyhytterapia</span>
             </div>
           </Link>
 
@@ -122,21 +123,21 @@ const Index = () => {
             className="relative group overflow-hidden"
           >
             <img
-              src="/lovable-uploads/e826cca7-a3ac-482e-860e-4cc69502db6a.png"
+              src={`${import.meta.env.BASE_URL}lovable-uploads/e826cca7-a3ac-482e-860e-4cc69502db6a.png`}
               alt="Puheenvuorot"
               className="w-full aspect-square object-cover transition-transform group-hover:scale-105"
             />
-            <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-              <span className="text-white text-2xl font-semibold">Puheenvuorot</span>
+            <div className="absolute inset-0 bg-black/40 flex items-center justify-center p-4">
+              <span className="text-white text-xl md:text-2xl font-semibold text-center">Puheenvuorot</span>
             </div>
           </Link>
         </div>
       </div>
 
-      {/* Testimonials Carousel */}
-      <div className="w-full bg-gray-100/70 py-16">
+      {/* Testimonials Carousel - Adjusted padding and font size */}
+      <div className="w-full bg-gray-100/70 py-8 md:py-16">
         <div className="max-w-5xl mx-auto px-4">
-          <h2 className="text-3xl font-semibold text-center mb-12">Asiakaspalautteita</h2>
+          <h2 className="text-2xl md:text-3xl font-semibold text-center mb-8 md:mb-12">Asiakaspalautteita</h2>
           
           <Carousel 
             className="w-full"
@@ -148,8 +149,8 @@ const Index = () => {
             <CarouselContent>
               {testimonials.map((testimonial, index) => (
                 <CarouselItem key={index} className="pl-4 md:basis-2/3 mx-auto">
-                  <div className="bg-white p-8 rounded-lg shadow-sm">
-                    <p className="text-lg text-gray-800 italic">"{testimonial}"</p>
+                  <div className="bg-white p-6 md:p-8 rounded-lg shadow-sm">
+                    <p className="text-base md:text-lg text-gray-800 italic">"{testimonial}"</p>
                   </div>
                 </CarouselItem>
               ))}
@@ -162,14 +163,14 @@ const Index = () => {
         </div>
       </div>
 
-      {/* Contact Form Section */}
-      <div className="w-full bg-black py-16">
+      {/* Contact Form Section - Adjusted padding and font size */}
+      <div className="w-full bg-black py-8 md:py-16">
         <div className="max-w-2xl mx-auto px-4">
           <div className="text-center mb-8">
-            <h2 className="text-3xl font-semibold text-white mb-6">YHTEYDENOTTO</h2>
+            <h2 className="text-2xl md:text-3xl font-semibold text-white mb-6">YHTEYDENOTTO</h2>
             <div className="flex justify-center mb-4">
               <img 
-                src="/lovable-uploads/Kuva1.jpg" 
+                src={`${import.meta.env.BASE_URL}lovable-uploads/Kuva1.jpg`}
                 alt="Aino Pekkarinen" 
                 className="w-32 h-32 object-cover rounded-full"
               />
@@ -226,7 +227,7 @@ const Index = () => {
             <div className="flex justify-center">
               <Button 
                 type="submit" 
-                className="rounded-full px-12 py-2 bg-transparent border border-white text-white hover:bg-white/10"
+                className="rounded-full px-8 py-2 md:px-12 text-sm md:text-base bg-transparent border border-white text-white hover:bg-white/10"
                 disabled={isSubmitting}
               >
                 LÄHETÄ
@@ -236,7 +237,7 @@ const Index = () => {
         </div>
       </div>
 
-      {/* Footer */}
+      {/* Footer - Adjusted padding */}
       <div className="w-full bg-black py-4 border-t border-gray-800">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <p className="text-sm text-gray-400">© Aino Pekkarinen 2025</p>
