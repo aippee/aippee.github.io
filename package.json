@@ -9,7 +9,7 @@
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
-    "deploy": "npm run build && gh-pages -d dist"
+    "deploy": "npm run build && gh-pages -d dist && git add . && git commit -m \"asd\" && git push origin HEAD"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
