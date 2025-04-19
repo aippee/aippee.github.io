@@ -106,7 +106,7 @@ const Index = () => {
       </div>
 
       {/* Quote Section - Adjusted padding and font size */}
-      <div className="w-full bg-white py-8 md:py-16">
+      <div className="w-full bg-white py-8 md:py-16 flex items-center min-h-[200px]">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h1 className="text-2xl md:text-4xl font-semibold text-gray-800">
             Tukenasi rakentamassa läheisiä ja kestäviä rakkaussuhteita sekä mielen hyvinvointia.
