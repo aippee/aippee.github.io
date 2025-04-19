@@ -1,16 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://terapia-aino.fi/</loc> 
-    <lastmod>2024-07-26</lastmod> <!-- Use current date or last significant update date -->
+    <loc>https://ainopekkarinen.fi/</loc>
+    <lastmod>2024-07-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://terapia-aino.fi/palvelut</loc>
-    <lastmod>2024-07-26</lastmod> <!-- Use current date or last significant update date -->
+    <loc>https://ainopekkarinen.fi/palvelut</loc>
+    <lastmod>2024-07-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ainopekkarinen.fi/minusta</loc>
+    <lastmod>2024-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ainopekkarinen.fi/yhteydenotto</loc>
+    <lastmod>2024-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <!-- Add more URLs here as your site grows -->
 </urlset> 
