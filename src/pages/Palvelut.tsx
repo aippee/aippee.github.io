@@ -245,7 +245,7 @@ const Palvelut = () => {
                 type="text"
                 required
                 placeholder="Nimi:"
-                className="bg-transparent border-none border-b border-white text-white focus:ring-0 px-0 py-1"
+                className="bg-transparent border-none border-b border-white text-white focus:ring-0 focus:outline-none focus:bg-transparent px-0 py-1"
                 style={{ borderBottom: "1px solid white" }}
               />
             </div>
@@ -257,7 +257,7 @@ const Palvelut = () => {
                 type="email"
                 required
                 placeholder="Sähköposti:"
-                className="bg-transparent border-none border-b border-white text-white focus:ring-0 px-0 py-1"
+                className="bg-transparent border-none border-b border-white text-white focus:ring-0 focus:outline-none focus:bg-transparent px-0 py-1"
                 style={{ borderBottom: "1px solid white" }}
               />
             </div>
@@ -268,7 +268,7 @@ const Palvelut = () => {
                 name="phone"
                 type="tel"
                 placeholder="Puhelin"
-                className="bg-transparent border-none border-b border-white text-white focus:ring-0 px-0 py-1"
+                className="bg-transparent border-none border-b border-white text-white focus:ring-0 focus:outline-none focus:bg-transparent px-0 py-1"
                 style={{ borderBottom: "1px solid white" }}
               />
             </div>
@@ -279,7 +279,7 @@ const Palvelut = () => {
                 name="message"
                 required
                 placeholder="Viesti"
-                className="bg-transparent border-none border-b border-white text-white focus:ring-0 px-0 py-1 min-h-[120px] resize-none"
+                className="bg-transparent border-none border-b border-white text-white focus:ring-0 focus:outline-none focus:bg-transparent px-0 py-1 min-h-[120px] resize-none"
                 style={{ borderBottom: "1px solid white" }}
               />
             </div>
