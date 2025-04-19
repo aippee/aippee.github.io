@@ -212,8 +212,8 @@ const Index = () => {
                 type="text"
                 required
                 placeholder="Nimi:"
-                className="bg-transparent border-none border-b border-white text-white focus:ring-0 focus:outline-none focus:bg-transparent px-0 py-1"
-                style={{ borderBottom: "1px solid white" }}
+                className="bg-transparent border-0 border-b border-white rounded-none text-white focus:ring-0 focus:outline-none focus:bg-transparent focus:border-white focus:shadow-none px-1 py-2 placeholder:text-gray-400 text-base"
+                style={{ boxShadow: "none" }}
               />
             </div>
 
@@ -224,8 +224,8 @@ const Index = () => {
                 type="email"
                 required
                 placeholder="Sähköposti:"
-                className="bg-transparent border-none border-b border-white text-white focus:ring-0 focus:outline-none focus:bg-transparent px-0 py-1"
-                style={{ borderBottom: "1px solid white" }}
+                className="bg-transparent border-0 border-b border-white rounded-none text-white focus:ring-0 focus:outline-none focus:bg-transparent focus:border-white focus:shadow-none px-1 py-2 placeholder:text-gray-400 text-base"
+                style={{ boxShadow: "none" }}
               />
             </div>
 
@@ -234,9 +234,9 @@ const Index = () => {
                 id="phone"
                 name="phone"
                 type="tel"
-                placeholder="Puhelin"
-                className="bg-transparent border-none border-b border-white text-white focus:ring-0 focus:outline-none focus:bg-transparent px-0 py-1"
-                style={{ borderBottom: "1px solid white" }}
+                placeholder="Puhelin:"
+                className="bg-transparent border-0 border-b border-white rounded-none text-white focus:ring-0 focus:outline-none focus:bg-transparent focus:border-white focus:shadow-none px-1 py-2 placeholder:text-gray-400 text-base"
+                style={{ boxShadow: "none" }}
               />
             </div>
 
@@ -245,19 +245,20 @@ const Index = () => {
                 id="message"
                 name="message"
                 required
-                placeholder="Viesti"
-                className="bg-transparent border-none border-b border-white text-white focus:ring-0 focus:outline-none focus:bg-transparent px-0 py-1 min-h-[120px] resize-none"
-                style={{ borderBottom: "1px solid white" }}
+                placeholder="Viesti:"
+                className="bg-transparent border-0 border-b border-white rounded-none text-white focus:ring-0 focus:outline-none focus:bg-transparent focus:border-white focus:shadow-none px-1 py-2 min-h-[120px] resize-none placeholder:text-gray-400 text-base"
+                style={{ boxShadow: "none" }}
               />
             </div>
 
-            <div className="flex justify-center">
+            <div className="flex justify-center pt-4">
               <Button 
                 type="submit" 
-                className="rounded-full px-8 py-2 md:px-12 text-sm md:text-base bg-transparent border border-white text-white hover:bg-white/10"
+                className="rounded-full px-8 py-2 md:px-12 text-sm md:text-base bg-transparent border border-white text-white hover:bg-white hover:text-black transition-colors"
                 disabled={isSubmitting}
+                style={{ textTransform: 'uppercase' }}
               >
-                LÄHETÄ
+                {isSubmitting ? "Lähetetään..." : "LÄHETÄ"}
               </Button>
             </div>
           </form>
