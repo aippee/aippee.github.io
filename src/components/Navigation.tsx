@@ -13,37 +13,43 @@ const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="absolute w-full z-50 py-4">
+    <nav className="absolute w-full z-50 py-6 md:py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          <div>
-            <h1 className="text-white text-lg md:text-xl font-bold">AINO PEKKARINEN</h1>
+        <div className="flex flex-col items-center">
+          <div className="mb-6">
+            <Link to="/" className="text-white text-2xl md:text-3xl tracking-wider font-light">
+              AINO PEKKARINEN
+            </Link>
           </div>
 
-          <div className="hidden md:flex gap-6 items-center text-white">
-            <Link to="/" className="hover:text-[#c0c0c0] transition-colors">
+          <div className="hidden md:flex gap-12 items-center text-white uppercase text-xs tracking-widest">
+            <Link to="/" className="hover:text-gray-300 transition-colors py-2">
               Koti
             </Link>
             
-            <DropdownMenu>
-              <DropdownMenuTrigger className="hover:text-[#c0c0c0] transition-colors focus:outline-none">
-                Palvelut
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-white">
-                <DropdownMenuItem>
-                  <Link to="/palvelut" className="w-full">
-                    Kaikki palvelut
-                  </Link>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <Link to="/palvelut" className="hover:text-gray-300 transition-colors py-2">
+              Palvelut
+            </Link>
             
-            <Link to="/yhteydenotto" className="hover:text-[#c0c0c0] transition-colors">
+            <Link to="/minusta" className="hover:text-gray-300 transition-colors py-2">
+              Minusta
+            </Link>
+            
+            <Link to="/yhteydenotto" className="hover:text-gray-300 transition-colors py-2">
               Yhteydenotto
             </Link>
+
+            <a 
+              href="https://vello.fi/lav-coaching" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="border border-white px-6 py-2 hover:bg-white/10 transition-all ml-4"
+            >
+              VARAA AIKA
+            </a>
           </div>
 
-          <div className="md:hidden flex items-center">
+          <div className="md:hidden flex items-center absolute right-4 top-6">
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="text-white focus:outline-none"
@@ -57,13 +63,13 @@ const Navigation = () => {
 
       {isOpen && (
         <div 
-          className="md:hidden bg-white/75 backdrop-blur-sm shadow-lg absolute top-16 left-0 right-0 mt-0 transition-opacity duration-200 ease-in-out"
+          className="md:hidden bg-white/95 shadow-lg absolute top-16 left-0 right-0 mt-0 transition-opacity duration-200 ease-in-out"
           style={{ opacity: isOpen ? 1 : 0 }}
         >
-          <div className="px-2 pt-4 pb-6 space-y-3 sm:px-3 flex flex-col items-center">
+          <div className="px-2 pt-4 pb-6 space-y-1 sm:px-3 flex flex-col items-center">
             <Link 
               to="/" 
-              className="text-gray-700 hover:text-black block px-3 py-3 rounded-md text-lg font-medium w-full text-center"
+              className="text-gray-800 hover:text-black block px-3 py-3 text-sm font-light w-full text-center uppercase tracking-widest"
               onClick={() => setIsOpen(false)}
             >
               Koti
@@ -71,19 +77,37 @@ const Navigation = () => {
             
             <Link 
               to="/palvelut" 
-              className="text-gray-700 hover:text-black block px-3 py-3 rounded-md text-lg font-medium w-full text-center"
+              className="text-gray-800 hover:text-black block px-3 py-3 text-sm font-light w-full text-center uppercase tracking-widest"
               onClick={() => setIsOpen(false)}
             >
               Palvelut
             </Link>
+            
+            <Link 
+              to="/minusta" 
+              className="text-gray-800 hover:text-black block px-3 py-3 text-sm font-light w-full text-center uppercase tracking-widest"
+              onClick={() => setIsOpen(false)}
+            >
+              Minusta
+            </Link>
 
             <Link 
               to="/yhteydenotto" 
-              className="text-gray-700 hover:text-black block px-3 py-3 rounded-md text-lg font-medium w-full text-center"
+              className="text-gray-800 hover:text-black block px-3 py-3 text-sm font-light w-full text-center uppercase tracking-widest"
               onClick={() => setIsOpen(false)}
             >
               Yhteydenotto
             </Link>
+
+            <a 
+              href="https://vello.fi/lav-coaching" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="mt-4 border border-gray-800 px-6 py-2 text-sm font-light text-gray-800 hover:bg-gray-800/5 transition-all uppercase tracking-widest"
+              onClick={() => setIsOpen(false)}
+            >
+              Varaa aika
+            </a>
           </div>
         </div>
       )}

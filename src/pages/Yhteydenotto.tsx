@@ -50,10 +50,8 @@ const Yhteydenotto = () => {
         />
       </Helmet>
 
-      <div className="min-h-screen bg-black flex items-center justify-center text-white pt-20 md:pt-0 px-4 py-8 md:py-12">
-        <div className="max-w-lg w-full px-4 sm:px-8 py-8">
-          <h1 className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12">YHTEYDENOTTO</h1>
-          
+      <div className="min-h-screen bg-[#131313] flex flex-col justify-center text-white pt-32 md:pt-40 lg:pt-48 px-4 py-16 md:py-24">
+        <div className="max-w-lg w-full mx-auto px-4 sm:px-8 py-8 md:py-12">  
           <form onSubmit={onSubmit} className="space-y-6 md:space-y-8">
             <div className="space-y-1">
               <Input
@@ -61,9 +59,8 @@ const Yhteydenotto = () => {
                 name="name"
                 type="text"
                 required
-                placeholder="Nimi:"
-                className="bg-transparent border-0 border-b border-white rounded-none text-white focus:ring-0 focus:outline-none focus:bg-transparent focus:border-white focus:shadow-none px-1 py-2 placeholder:text-gray-400 text-base"
-                style={{ boxShadow: "none" }}
+                placeholder="Nimi"
+                className="elegant-input text-white placeholder:text-gray-400"
               />
             </div>
 
@@ -73,9 +70,8 @@ const Yhteydenotto = () => {
                 name="email"
                 type="email"
                 required
-                placeholder="Sähköposti:"
-                className="bg-transparent border-0 border-b border-white rounded-none text-white focus:ring-0 focus:outline-none focus:bg-transparent focus:border-white focus:shadow-none px-1 py-2 placeholder:text-gray-400 text-base"
-                style={{ boxShadow: "none" }}
+                placeholder="Sähköposti"
+                className="elegant-input text-white placeholder:text-gray-400"
               />
             </div>
 
@@ -84,9 +80,8 @@ const Yhteydenotto = () => {
                 id="phone"
                 name="phone"
                 type="tel"
-                placeholder="Puhelin:"
-                className="bg-transparent border-0 border-b border-white rounded-none text-white focus:ring-0 focus:outline-none focus:bg-transparent focus:border-white focus:shadow-none px-1 py-2 placeholder:text-gray-400 text-base"
-                style={{ boxShadow: "none" }}
+                placeholder="Puhelin"
+                className="elegant-input text-white placeholder:text-gray-400"
               />
             </div>
 
@@ -95,20 +90,18 @@ const Yhteydenotto = () => {
                 id="message"
                 name="message"
                 required
-                placeholder="Viesti:"
-                className="bg-transparent border-0 border-b border-white rounded-none text-white focus:ring-0 focus:outline-none focus:bg-transparent focus:border-white focus:shadow-none px-1 py-2 min-h-[80px] md:min-h-[100px] resize-none placeholder:text-gray-400 text-base"
-                style={{ boxShadow: "none" }}
+                placeholder="Viesti"
+                className="elegant-input text-white placeholder:text-gray-400 min-h-[120px] resize-none"
               />
             </div>
 
-            <div className="flex justify-center pt-4">
+            <div className="flex justify-center pt-8">
               <Button 
                 type="submit" 
-                className="rounded-full px-8 py-2 md:px-12 text-sm md:text-base bg-transparent border border-white text-white hover:bg-white hover:text-black transition-colors"
+                className="btn-elegant-light"
                 disabled={isSubmitting}
-                style={{ textTransform: 'uppercase' }}
               >
-                {isSubmitting ? "Lähetetään..." : "Lähetä"}
+                {isSubmitting ? "LÄHETETÄÄN..." : "LÄHETÄ"}
               </Button>
             </div>
           </form>

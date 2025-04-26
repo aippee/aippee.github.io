@@ -1,0 +1,5 @@
+Miten pääset näkemään nettisivun (ei vielä oikeasti netissä):
+kirjoita terminaaliin: katso
+
+Miten päivität nettisivun nettiin:
+kirjoita terminaaliin: päivitä
