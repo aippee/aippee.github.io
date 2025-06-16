@@ -1,28 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- Finnish Homepage -->
   <url>
-    <loc>https://ainopekkarinen.fi/</loc>
-    <lastmod>2024-07-30</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://ainopekkarinen.fi/fi</loc>
+    <xhtml:link rel="alternate" hreflang="fi" href="https://ainopekkarinen.fi/fi"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ainopekkarinen.fi/en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ainopekkarinen.fi/fi"/>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
+  
+  <!-- English Homepage -->
   <url>
-    <loc>https://ainopekkarinen.fi/palvelut</loc>
-    <lastmod>2024-07-30</lastmod>
+    <loc>https://ainopekkarinen.fi/en</loc>
+    <xhtml:link rel="alternate" hreflang="fi" href="https://ainopekkarinen.fi/fi"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ainopekkarinen.fi/en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ainopekkarinen.fi/fi"/>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- Finnish Services Page -->
+  <url>
+    <loc>https://ainopekkarinen.fi/fi/palvelut</loc>
+    <xhtml:link rel="alternate" hreflang="fi" href="https://ainopekkarinen.fi/fi/palvelut"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ainopekkarinen.fi/en/palvelut"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ainopekkarinen.fi/fi/palvelut"/>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <!-- English Services Page -->
+  <url>
+    <loc>https://ainopekkarinen.fi/en/palvelut</loc>
+    <xhtml:link rel="alternate" hreflang="fi" href="https://ainopekkarinen.fi/fi/palvelut"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ainopekkarinen.fi/en/palvelut"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ainopekkarinen.fi/fi/palvelut"/>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <!-- Finnish About Page -->
+  <url>
+    <loc>https://ainopekkarinen.fi/fi/minusta</loc>
+    <xhtml:link rel="alternate" hreflang="fi" href="https://ainopekkarinen.fi/fi/minusta"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ainopekkarinen.fi/en/minusta"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ainopekkarinen.fi/fi/minusta"/>
+    <lastmod>2025-01-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  
+  <!-- English About Page -->
   <url>
-    <loc>https://ainopekkarinen.fi/minusta</loc>
-    <lastmod>2024-07-30</lastmod>
+    <loc>https://ainopekkarinen.fi/en/minusta</loc>
+    <xhtml:link rel="alternate" hreflang="fi" href="https://ainopekkarinen.fi/fi/minusta"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ainopekkarinen.fi/en/minusta"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ainopekkarinen.fi/fi/minusta"/>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Finnish Contact Page -->
+  <url>
+    <loc>https://ainopekkarinen.fi/fi/yhteydenotto</loc>
+    <xhtml:link rel="alternate" hreflang="fi" href="https://ainopekkarinen.fi/fi/yhteydenotto"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ainopekkarinen.fi/en/yhteydenotto"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ainopekkarinen.fi/fi/yhteydenotto"/>
+    <lastmod>2025-01-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  
+  <!-- English Contact Page -->
   <url>
-    <loc>https://ainopekkarinen.fi/yhteydenotto</loc>
-    <lastmod>2024-07-30</lastmod>
+    <loc>https://ainopekkarinen.fi/en/yhteydenotto</loc>
+    <xhtml:link rel="alternate" hreflang="fi" href="https://ainopekkarinen.fi/fi/yhteydenotto"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ainopekkarinen.fi/en/yhteydenotto"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ainopekkarinen.fi/fi/yhteydenotto"/>
+    <lastmod>2025-01-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  <!-- Add more URLs here as your site grows -->
 </urlset> 
