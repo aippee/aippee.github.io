@@ -2,7 +2,7 @@ import React from 'react';
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate, useParams, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useParams, useLocation, useNavigate } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
@@ -69,18 +69,19 @@ const LanguageWrapper = ({ children }: { children: React.ReactNode }) => {
 
 // Language redirect component
 const LanguageRedirect = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   
   useEffect(() => {
     // Get user's preferred language
-    const savedLanguage = localStorage.getItem('i18nextLng');
+    const savedLanguage = localStorage.getItem('i18nextLng') || localStorage.getItem('ainopekkarinen-language');
     const browserLanguage = navigator.language.split('-')[0];
     const defaultLanguage = (savedLanguage === 'en' || browserLanguage === 'en') ? 'en' : 'fi';
     
-    // Redirect to language-specific URL
+    // Navigate to language-specific URL
     const newPath = `/${defaultLanguage}${location.pathname}${location.search}${location.hash}`;
-    window.location.replace(newPath);
-  }, [location]);
+    navigate(newPath, { replace: true });
+  }, [navigate, location]);
 
   return null;
 };
