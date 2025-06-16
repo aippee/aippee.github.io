@@ -5,9 +5,14 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import { useCommonTranslation, usePagesTranslation, useSEOTranslation } from "../hooks/useTranslation";
 
 const Palvelut = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { t: tCommon } = useCommonTranslation();
+  const { t: tPages } = usePagesTranslation();
+  const { t: tSEO } = useSEOTranslation();
+  
   const pageUrl = window.location.href;
   const heroImageUrl = `${import.meta.env.BASE_URL}lovable-uploads/IMG_5104.JPG`;
 
@@ -27,14 +32,14 @@ const Palvelut = () => {
       const data = await response.json();
 
       if (data.success) {
-        toast.success("Viesti lähetetty onnistuneesti!");
+        toast.success(tCommon('forms.messages.success'));
         (event.target as HTMLFormElement).reset();
       } else {
-        toast.error("Virhe viestin lähetyksessä. Yritä uudelleen.");
+        toast.error(tCommon('forms.messages.error'));
         console.log("Error", data);
       }
     } catch (error) {
-      toast.error("Virhe viestin lähetyksessä. Yritä uudelleen.");
+      toast.error(tCommon('forms.messages.error'));
       console.log("Error", error);
     }
 
@@ -45,7 +50,7 @@ const Palvelut = () => {
     "@context": "https://schema.org",
     "@type": "Psychologist",
     "name": "Aino Pekkarinen",
-    "description": "Tarjoan pariterapiaa, lyhytterapiaa ja puheenvuoroja tukemaan ihmissuhteita ja mielen hyvinvointia.",
+    "description": tSEO('schema.description'),
     "url": pageUrl,
     "image": heroImageUrl,
     "makesOffer": [
@@ -53,8 +58,8 @@ const Palvelut = () => {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Pariterapia",
-          "description": "Pariterapiaa tunnekeskeisen pariterapian viitekehyksessä etäisyyden, konfliktien, luottamushaasteiden ja läheisyyden teemojen työstämiseen.",
+          "name": tSEO('schema.servicePariterapia.name'),
+          "description": tSEO('schema.servicePariterapia.description'),
           "url": "https://vello.fi/lav-coaching"
         }
       },
@@ -62,8 +67,8 @@ const Palvelut = () => {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Lyhytterapia",
-          "description": "Yksilöllistä lyhytterapiaa kuormittaviin elämäntilanteisiin, ihmissuhdehaasteisiin, ahdistus- tai masennusoireisiin tai itsetuntemuksen lisäämiseen.",
+          "name": tSEO('schema.serviceLyhytterapia.name'),
+          "description": tSEO('schema.serviceLyhytterapia.description'),
           "url": "https://pro.vello.fi/aino-pekkarinen/service"
         }
       },
@@ -71,8 +76,8 @@ const Palvelut = () => {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Puheenvuorot",
-          "description": "Räätälöityjä puheenvuoroja ihmissuhteista, rakkauden psykologiasta, vuorovaikutus- ja tunnetaidoista tapahtumiin."
+          "name": tPages('services.speaking.title'),
+          "description": tPages('services.speaking.description')
         }
       }
     ]
@@ -81,14 +86,24 @@ const Palvelut = () => {
   return (
     <div className="min-h-screen">
       <Helmet>
-        <title>Palvelut: Pariterapia, Lyhytterapia, Puheenvuorot | Aino Pekkarinen</title>
-        <meta name="description" content="Tutustu Aino Pekkarisen palveluihin: ammattitaitoinen pariterapia, tukea antava lyhytterapia ja oivaltavat puheenvuorot ihmissuhteista ja hyvinvoinnista." />
+        <title>{tSEO('services.title')}</title>
+        <meta name="description" content={tSEO('services.description')} />
+        <meta name="keywords" content={tSEO('services.keywords')} />
+        <meta name="author" content="Aino Pekkarinen" />
+        <link rel="canonical" href={pageUrl} />
         
-        <meta property="og:title" content="Palvelut: Pariterapia, Lyhytterapia, Puheenvuorot | Aino Pekkarinen" />
-        <meta property="og:description" content="Tarjoan pariterapiaa, lyhytterapiaa ja asiantuntevia puheenvuoroja. Varaa aika tai kysy lisää!" />
+        <meta property="og:title" content={tSEO('services.ogTitle')} />
+        <meta property="og:description" content={tSEO('services.ogDescription')} />
         <meta property="og:image" content={heroImageUrl} />
         <meta property="og:url" content={pageUrl} />
         <meta property="og:type" content="website" />
+        <meta property="og:locale" content="fi_FI" />
+        <meta property="og:site_name" content="Aino Pekkarinen" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={tSEO('services.twitterTitle')} />
+        <meta name="twitter:description" content={tSEO('services.twitterDescription')} />
+        <meta name="twitter:image" content={heroImageUrl} />
 
         <script type="application/ld+json">
           {JSON.stringify(schemaData)}
@@ -106,7 +121,7 @@ const Palvelut = () => {
           height="1080"
         />
         <div className="absolute inset-0 flex items-center justify-center">
-          <h1 className="hero-header text-white text-4xl md:text-7xl lg:text-8xl font-light tracking-wider px-4 text-center">PALVELUT</h1>
+          <h1 className="hero-header text-white text-4xl md:text-7xl lg:text-8xl font-light tracking-wider px-4 text-center">{tCommon('navigation.services').toUpperCase()}</h1>
         </div>
       </div>
 
@@ -115,12 +130,12 @@ const Palvelut = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
             <div className="prose max-w-none order-last md:order-none">
-              <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">PARITERAPIA</h2>
+              <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">{tPages('services.couples.title').toUpperCase()}</h2>
               <p className="mb-4 text-base md:text-lg font-light leading-relaxed text-gray-700">
-                Pariterapiaprosessit toteutetaan LAV-coaching yrityksen kautta. Liikkeelle voit lähteä LAV-coaching ajanvarauksen kautta. Käyntipaketit ovat jotakin 2-10 tapaamisen välillä, mutta käyntejä voi sopia tarpeen mukaan myös enemmän. Voit myös aloittaa 30min tutustumiskäynnillä kanssani, jos haluatte ensin kokeilla sitä miltä parisuhteen asioista tuntuu jutella.
+                {tPages('services.couples.paragraph1')}
               </p>
               <p className="mb-6 text-base md:text-lg font-light leading-relaxed text-gray-700">
-                Pariterapiaan voitte tulla työstämään esimerkiksi etäisyyden tunteita, toistuvia konflikteja, arvoihin tai näkemyseroihin liittyviä erimielisyyksiä, luottamukseen liittyviä haasteita tai seksuaalisuuden ja läheisyyden teemoja. Pariterapiatyössä hyödynnän tunnekeskeisen pariterapian viitekehystä, joka on maailman tutkituin ja tehokkain pariterapian viitekehys. Lue lisää tunnekeskeisestä pariterapiasta täältä.
+                {tPages('services.couples.paragraph2')}
               </p>
               <div className="flex flex-col sm:flex-row gap-3 md:gap-4 mb-6 md:mb-0">
                 <a
@@ -129,7 +144,7 @@ const Palvelut = () => {
                   rel="noopener noreferrer"
                   className="btn-elegant inline-block text-center"
                 >
-                  VARAA AIKA PARITERAPIAAN
+                  {tCommon('buttons.bookCouplesTherapy')}
                 </a>
                 <a
                   href="https://lavcoaching.com/hinnasto/"
@@ -137,7 +152,7 @@ const Palvelut = () => {
                   rel="noopener noreferrer"
                   className="btn-elegant inline-block text-center"
                 >
-                  PARITERAPIAN HINNASTO
+                  {tPages('services.couples.priceListButton')}
                 </a>
               </div>
             </div>
@@ -170,15 +185,15 @@ const Palvelut = () => {
               />
             </div>
             <div className="prose max-w-none md:order-2">
-              <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">LYHYTTERAPIA</h2>
+              <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">{tPages('services.shortTerm.title').toUpperCase()}</h2>
               <p className="mb-4 text-base md:text-lg font-light leading-relaxed text-gray-700">
-                Lyhytterapia tarkoittaa yksilöterapiaa, joka on kestoltaan tyypillisesti lyhyempää kuin psykoterapia. Lyhytterapiakäynnit ovat yleensä jotakin muutamasta käynnistä puolen vuoden tai vuodenkin mittaiseen prosessiin. Voit tehdä tarkempaa suunnitelmaa kanssani kun pääsemme käyntien kanssa alkuun.
+                {tPages('services.shortTerm.paragraph1')}
               </p>
               <p className="mb-4 text-base md:text-lg font-light leading-relaxed text-gray-700">
-                Lyhytterapiassa voit käsitellä kanssani mieltä painavia asioitasi. Käynneiltä voit saada tukea esimerkiksi kuormittavaan elämäntilanteeseen, haasteisiin ihmissuhteissa tai parisuhteessa, tai vaikkapa elämääsi haittaaviin ahdistus- tai masennusoireisiin. Käynneille voit tulla myös jos haluat ymmärtää itseäsi tai jotakin toimintataapasi paremmin, tai tehdä muutoksia elämässäsi toivomaasi suuntaan.
+                {tPages('services.shortTerm.paragraph2')}
               </p>
               <p className="font-semibold mb-6 text-base md:text-lg">
-                45min lyhytterapiakäynnin hinta: 120€
+                {tPages('services.shortTerm.pricing')}
               </p>
               <div className="mb-6 md:mb-0">
                 <a
@@ -187,7 +202,7 @@ const Palvelut = () => {
                   rel="noopener noreferrer"
                   className="btn-elegant inline-block text-center"
                 >
-                  VARAA AIKA LYHYTTERAPIAAN
+                  {tCommon('buttons.bookShortTherapy')}
                 </a>
               </div>
             </div>
@@ -200,19 +215,19 @@ const Palvelut = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
             <div className="prose max-w-none order-last md:order-none">
-              <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">PUHEENVUOROT</h2>
+              <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">{tPages('services.speaking.title').toUpperCase()}</h2>
               <p className="mb-4 text-base md:text-lg font-light leading-relaxed text-gray-700">
-                Haluatko tapahtumaasi puheenvuoron ihmissuhteista, rakkauden merkityksestä kokonaisvaltaiselle hyvinvoinnille, tai vuorovaikutus- ja tunnetaidoista ja niiden merkityksestä? Vuorovaikutussuhteiden ja ihmissuhteiden merkitys koskettaa meitä kaikkialla, ja voin soveltaa näitä teemoja monenlaisiin ympäristöihin.
+                {tPages('services.speaking.description')}
               </p>
-              <p className="font-semibold mb-2 text-base md:text-lg">Esimerkkejä puheenvuoroista:</p>
+              <p className="font-semibold mb-2 text-base md:text-lg">{tPages('services.speaking.examplesTitle')}</p>
               <ul className="mb-6 list-disc pl-5 text-base md:text-lg font-light">
-                <li className="mb-1">Rakkauden psykologia - miten voimme luoda kestävää rakkautta?</li>
-                <li className="mb-1">Tunne- ja vuorovaikutustaidot</li>
-                <li className="mb-1">Kestävä rakkaussuhde kokonaisvaltaisen hyvinvoinnin perustana</li>
-                <li className="mb-1">Kiintymyssuhteet läpi elämänkaaren</li>
+                <li className="mb-1">{tPages('services.speaking.example1')}</li>
+                <li className="mb-1">{tPages('services.speaking.example2')}</li>
+                <li className="mb-1">{tPages('services.speaking.example3')}</li>
+                <li className="mb-1">{tPages('services.speaking.example4')}</li>
               </ul>
               <p className="font-semibold mb-4 text-base md:text-lg">
-                Ota yhteyttä niin räätälöidään tarpeisiisi sopiva kokonaisuus!
+                {tPages('services.speaking.contactText')}
               </p>
             </div>
             <div className="relative overflow-hidden">
@@ -233,7 +248,7 @@ const Palvelut = () => {
       <div className="w-full bg-[#131313] py-16 md:py-20">
         <div className="max-w-2xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-10">
-            <h2 className="text-2xl md:text-3xl font-light text-white mb-6 tracking-wider">YHTEYDENOTTO</h2>
+            <h2 className="text-2xl md:text-3xl font-light text-white mb-6 tracking-wider">{tCommon('sections.contact')}</h2>
             <div className="flex justify-center mb-8">
               <img 
                 src={`${import.meta.env.BASE_URL}lovable-uploads/Kuva1.jpg`}
@@ -253,7 +268,7 @@ const Palvelut = () => {
                 name="name"
                 type="text"
                 required
-                placeholder="Nimi"
+                placeholder={tCommon('forms.placeholders.name')}
                 className="elegant-input text-white placeholder:text-gray-400"
               />
             </div>
@@ -264,7 +279,7 @@ const Palvelut = () => {
                 name="email"
                 type="email"
                 required
-                placeholder="Sähköposti"
+                placeholder={tCommon('forms.placeholders.email')}
                 className="elegant-input text-white placeholder:text-gray-400"
               />
             </div>
@@ -274,7 +289,7 @@ const Palvelut = () => {
                 id="phone"
                 name="phone"
                 type="tel"
-                placeholder="Puhelin"
+                placeholder={tCommon('forms.placeholders.phone')}
                 className="elegant-input text-white placeholder:text-gray-400"
               />
             </div>
@@ -284,7 +299,7 @@ const Palvelut = () => {
                 id="message"
                 name="message"
                 required
-                placeholder="Viesti"
+                placeholder={tCommon('forms.placeholders.message')}
                 className="elegant-input text-white placeholder:text-gray-400 min-h-[120px] resize-none"
               />
             </div>
@@ -295,7 +310,7 @@ const Palvelut = () => {
                 className="btn-elegant-light"
                 disabled={isSubmitting}
               >
-                {isSubmitting ? "LÄHETETÄÄN..." : "LÄHETÄ"}
+                {isSubmitting ? tCommon('buttons.sending') : tCommon('buttons.send')}
               </Button>
             </div>
           </form>

@@ -1,14 +1,12 @@
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: facebookexternalhit
-Allow: /
-
 User-agent: *
 Allow: /
+
+# Sitemap
+Sitemap: https://ainopekkarinen.fi/sitemap.xml
+
+# Disallow crawling of test pages
+Disallow: /*/i18n-test
+
+# Allow crawling of all language versions
+Allow: /fi/
+Allow: /en/

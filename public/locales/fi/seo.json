@@ -1,0 +1,54 @@
+{
+  "homepage": {
+    "title": "Pariterapia ja Lyhytterapia Helsingissä | Aino Pekkarinen",
+    "description": "Aino Pekkarinen tarjoaa ammattitaitoista pariterapiaa ja lyhytterapiaa Helsingissä. Tukea parisuhteeseen ja mielen hyvinvointiin - varaa aikasi helposti verkosta.",
+    "keywords": "pariterapia, lyhytterapia, terapeutti, Helsinki, parisuhdeterapia, psykoterapia, mielenterveys, hyvinvointi",
+    "ogTitle": "Pariterapia ja Lyhytterapia | Aino Pekkarinen",
+    "ogDescription": "Ammattitaitoista pariterapiaa ja lyhytterapiaa Helsingissä. Tukea parisuhteeseen ja mielen hyvinvointiin.",
+    "twitterTitle": "Pariterapia ja Lyhytterapia | Aino Pekkarinen",
+    "twitterDescription": "Ammattitaitoista pariterapiaa ja lyhytterapiaa Helsingissä. Tukea parisuhteeseen ja mielen hyvinvointiin."
+  },
+  "about": {
+    "title": "Minusta | Aino Pekkarinen",
+    "description": "Tutustu terapeutti Aino Pekkariseen. Lue lisää taustastani ja lähestymistavastani terapiaan.",
+    "keywords": "Aino Pekkarinen, terapeutti, psykologi, pariterapeutti, Helsinki, tunnekeskeinen pariterapia",
+    "ogTitle": "Minusta - Aino Pekkarinen | Terapeutti",
+    "ogDescription": "Tutustu terapeutti Aino Pekkariseen ja hänen lähestymistapaan terapiaan.",
+    "twitterTitle": "Minusta - Aino Pekkarinen | Terapeutti",
+    "twitterDescription": "Tutustu terapeutti Aino Pekkariseen ja hänen lähestymistapaan terapiaan."
+  },
+  "services": {
+    "title": "Palvelut: Pariterapia, Lyhytterapia, Puheenvuorot | Aino Pekkarinen",
+    "description": "Tutustu Aino Pekkarisen palveluihin: ammattitaitoinen pariterapia, tukea antava lyhytterapia ja oivaltavat puheenvuorot ihmissuhteista ja hyvinvoinnista.",
+    "keywords": "pariterapia, lyhytterapia, puheenvuorot, terapiapalvelut, Helsinki, tunnekeskeinen pariterapia, psykoterapia",
+    "ogTitle": "Palvelut: Pariterapia, Lyhytterapia, Puheenvuorot | Aino Pekkarinen",
+    "ogDescription": "Tarjoan pariterapiaa, lyhytterapiaa ja asiantuntevia puheenvuoroja. Varaa aika tai kysy lisää!",
+    "twitterTitle": "Palvelut: Pariterapia, Lyhytterapia, Puheenvuorot | Aino Pekkarinen",
+    "twitterDescription": "Tarjoan pariterapiaa, lyhytterapiaa ja asiantuntevia puheenvuoroja. Varaa aika tai kysy lisää!"
+  },
+  "contact": {
+    "title": "Ota Yhteyttä | Aino Pekkarinen",
+    "description": "Ota yhteyttä Aino Pekkariseen varataksesi ajan pariterapiaan, lyhytterapiaan tai tiedustellaksesi puheenvuoroja. Löydät täältä yhteystiedot.",
+    "keywords": "yhteystiedot, varaa aika, pariterapia, lyhytterapia, Helsinki, Aino Pekkarinen",
+    "ogTitle": "Ota Yhteyttä - Aino Pekkarinen | Terapeutti",
+    "ogDescription": "Ota yhteyttä varataksesi ajan pariterapiaan tai lyhytterapiaan.",
+    "twitterTitle": "Ota Yhteyttä - Aino Pekkarinen | Terapeutti",
+    "twitterDescription": "Ota yhteyttä varataksesi ajan pariterapiaan tai lyhytterapiaan."
+  },
+  "notFound": {
+    "title": "Sivua ei löytynyt - 404 | Aino Pekkarinen",
+    "description": "Etsimääsi sivua ei löytynyt. Palaa etusivulle tai käytä navigaatiota löytääksesi haluamasi sisältö."
+  },
+  "schema": {
+    "description": "Tarjoan pariterapiaa ja lyhytterapiaa mielen hyvinvoinnin tukemiseksi.",
+    "jobTitle": "Psykologi ja Terapeutti",
+    "servicePariterapia": {
+      "name": "Pariterapia",
+      "description": "Tukea parisuhteeseen ja kommunikaation parantamiseen."
+    },
+    "serviceLyhytterapia": {
+      "name": "Lyhytterapia",
+      "description": "Tukea mielen hyvinvointiin ja psyykkiseen jaksamiseen."
+    }
+  }
+} 

@@ -5,17 +5,19 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { useCommonTranslation, usePagesTranslation, useSEOTranslation, useTestimonialsTranslation } from "../hooks/useTranslation";
 
 const Minusta = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const heroImageUrl = `${import.meta.env.BASE_URL}lovable-uploads/26dc5ff5-e153-4729-8dc3-1cee1e32f411.png`;
+  const { t: tCommon } = useCommonTranslation();
+  const { t: tPages } = usePagesTranslation();
+  const { t: tSEO } = useSEOTranslation();
+  const { t: tTestimonials } = useTestimonialsTranslation();
   
-  const testimonials = [
-    "Olit hyvä luomaan meidän välille parempaa ymmärrystä. Teet todella hyvää psykologin työtä ja olimme molemmat tosi tyytyväisiä. Olit hyvä pitämään keskustelussa punaista lankaa ja nostamaan esiin tunnepuolta ja ymmärrystä toisiamme kohtaan.",
-    "Olit todella helposti lähestyttävä ja sait vaivattomasti luotua ilmapiirin, missä oli helppo keskustella mistä tahansa.",
-    "Lähtökohtaisesti kaikki: meillä oli vain 3 kerran paketti, mutta pääsimme hyvin kiinni parisuhteen tärkeisiin teemoihin ja oppimaan uutta itsestä sekä kumppanista. Tämä siitäkin huolimatta, että keskustelemme paljon parisuhteessamme jo entuudestaan.",
-    "Terapeutti sopi hyvin meille molemmille ja loi turvallisen ja rauhallisen ilmapiirin tapaamisiin. Meidän välille rakennettiin entistä parempaa yhteyttä ja se tuntui tärkeältä."
-  ];
+  const heroImageUrl = `${import.meta.env.BASE_URL}lovable-uploads/26dc5ff5-e153-4729-8dc3-1cee1e32f411.png`;
+  const pageUrl = window.location.href;
+  
+  const testimonials = tTestimonials('quotes', { returnObjects: true }) as string[];
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -33,28 +35,65 @@ const Minusta = () => {
       const data = await response.json();
 
       if (data.success) {
-        toast.success("Viesti lähetetty onnistuneesti!");
+        toast.success(tCommon('forms.messages.success'));
         (event.target as HTMLFormElement).reset();
       } else {
-        toast.error("Virhe viestin lähetyksessä. Yritä uudelleen.");
+        toast.error(tCommon('forms.messages.error'));
         console.log("Error", data);
       }
     } catch (error) {
-      toast.error("Virhe viestin lähetyksessä. Yritä uudelleen.");
+      toast.error(tCommon('forms.messages.error'));
       console.log("Error", error);
     }
 
     setIsSubmitting(false);
   };
 
+  const schemaData = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Aino Pekkarinen",
+    "jobTitle": tSEO('schema.jobTitle'),
+    "image": `${import.meta.env.BASE_URL}lovable-uploads/Kuva1.jpg`,
+    "description": tPages('about.bio.paragraph1'),
+    "url": pageUrl,
+    "knowsLanguage": ["fi", "en"],
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Helsinki",
+      "addressRegion": "Uusimaa",
+      "addressCountry": "FI"
+    }
+  };
+
   return (
     <>
       <Helmet>
-        <title>Minusta | Aino Pekkarinen</title>
+        <title>{tSEO('about.title')}</title>
         <meta 
           name="description" 
-          content="Tutustu terapeutti Aino Pekkariseen. Lue lisää taustastani ja lähestymistavastani terapiaan."
+          content={tSEO('about.description')}
         />
+        <meta name="keywords" content={tSEO('about.keywords')} />
+        <meta name="author" content="Aino Pekkarinen" />
+        <link rel="canonical" href={pageUrl} />
+        
+        <meta property="og:title" content={tSEO('about.ogTitle')} />
+        <meta property="og:description" content={tSEO('about.ogDescription')} />
+        <meta property="og:image" content={heroImageUrl} />
+        <meta property="og:url" content={pageUrl} />
+        <meta property="og:type" content="profile" />
+        <meta property="og:locale" content="fi_FI" />
+        <meta property="og:site_name" content="Aino Pekkarinen" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={tSEO('about.twitterTitle')} />
+        <meta name="twitter:description" content={tSEO('about.twitterDescription')} />
+        <meta name="twitter:image" content={heroImageUrl} />
+
+        <script type="application/ld+json">
+          {JSON.stringify(schemaData)}
+        </script>
       </Helmet>
 
       {/* Hero Section with Header */}
@@ -68,7 +107,7 @@ const Minusta = () => {
           fetchPriority="high"
         />
         <div className="absolute inset-0 flex items-center justify-center">
-          <h1 className="hero-header text-white text-5xl md:text-7xl lg:text-8xl font-light tracking-wider">MINUSTA</h1>
+          <h1 className="hero-header text-white text-5xl md:text-7xl lg:text-8xl font-light tracking-wider">{tCommon('navigation.about').toUpperCase()}</h1>
         </div>
       </div>
 
@@ -88,16 +127,16 @@ const Minusta = () => {
             {/* Text content on the right */}
             <div className="prose max-w-none">
               <p className="mb-8 text-base md:text-lg font-light leading-relaxed text-gray-700">
-                Olen psykologi jonka intohimona on auttaa ihmisiä rakentamaan tyydyttäviä ja rakastavia ihmissuhteita. Olen palvellut jo satoja asiakkaita, pariskuntia sekä yksilöasiakkaita, ja auttanut heitä kohti yhdessä määriteltyjä tavoitteita.
+                {tPages('about.bio.paragraph1')}
               </p>
               <p className="mb-8 text-base md:text-lg font-light leading-relaxed text-gray-700">
-                Asiakastyössä olen lämmin ja empaattinen, ja haluan luoda asiakkaalle turvallisen tilan tutkiskella omia taustoja, tunteita ja kokemuksia.
+                {tPages('about.bio.paragraph2')}
               </p>
               <p className="mb-8 text-base md:text-lg font-light leading-relaxed text-gray-700">
-                Pidän tärkeänä sitä että asiakastyö nojaa tutkittuihin ja tuloksellisiin työkaluihin, mutta samalla aina lähdetään liikkeelle juuri sinulle tärkeistä ja yhdessä mietityistä tavoitteista käsin.
+                {tPages('about.bio.paragraph3')}
               </p>
               <p className="mb-8 text-base md:text-lg font-light leading-relaxed text-gray-700">
-                Pariterapiatyössäni nojaan vahvasti tunnekeskeisen pariterapian viitekehykseen, joka on maailman tutkituin ja tuloksellisin pariterapian muoto. Yksilövastaanotoilla yhdistelen usein tunnekeskeisiä, sekä kognitiivis-analyyttisiä työkaluja lyhytterapeuttisellä otteella.
+                {tPages('about.bio.paragraph4')}
               </p>
             </div>
           </div>
@@ -108,7 +147,7 @@ const Minusta = () => {
       <div className="w-full bg-[#f8f7f5] py-20 md:py-28">
         <div className="max-w-3xl mx-auto px-4 text-center">
           <h2 className="font-light text-2xl md:text-3xl text-[#131313] leading-relaxed">
-            "Haluan auttaa asiakkaitani katsomaan itseään lempeämmin sekä pariterapiatyössä käymään vaikeitakin keskusteluja ja löytämään uudenlaista yhteyttä niiden keskeltä"
+            "{tPages('about.quote')}"
           </h2>
         </div>
       </div>
@@ -116,7 +155,7 @@ const Minusta = () => {
       {/* Testimonials Section */}
       <div className="w-full bg-white py-20 md:py-28">
         <div className="max-w-5xl mx-auto px-4">
-          <h2 className="section-title">ASIAKASPALAUTTEITA</h2>
+          <h2 className="section-title">{tCommon('sections.testimonials')}</h2>
           
           <Carousel 
             className="w-full"
@@ -146,7 +185,7 @@ const Minusta = () => {
       <div className="w-full bg-[#131313] py-20 md:py-28">
         <div className="max-w-2xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-2xl md:text-3xl font-light text-white mb-4 tracking-wider">YHTEYDENOTTO</h2>
+            <h2 className="text-2xl md:text-3xl font-light text-white mb-4 tracking-wider">{tCommon('sections.contact')}</h2>
             <div className="flex justify-center mb-8">
               <img 
                 src={`${import.meta.env.BASE_URL}lovable-uploads/Kuva1.jpg`}
@@ -166,7 +205,7 @@ const Minusta = () => {
                 name="name"
                 type="text"
                 required
-                placeholder="Nimi"
+                placeholder={tCommon('forms.placeholders.name')}
                 className="elegant-input text-white placeholder:text-gray-400"
               />
             </div>
@@ -177,7 +216,7 @@ const Minusta = () => {
                 name="email"
                 type="email"
                 required
-                placeholder="Sähköposti"
+                placeholder={tCommon('forms.placeholders.email')}
                 className="elegant-input text-white placeholder:text-gray-400"
               />
             </div>
@@ -187,7 +226,7 @@ const Minusta = () => {
                 id="phone"
                 name="phone"
                 type="tel"
-                placeholder="Puhelin"
+                placeholder={tCommon('forms.placeholders.phone')}
                 className="elegant-input text-white placeholder:text-gray-400"
               />
             </div>
@@ -197,7 +236,7 @@ const Minusta = () => {
                 id="message"
                 name="message"
                 required
-                placeholder="Viesti"
+                placeholder={tCommon('forms.placeholders.message')}
                 className="elegant-input text-white placeholder:text-gray-400 min-h-[120px] resize-none"
               />
             </div>
@@ -208,7 +247,7 @@ const Minusta = () => {
                 className="btn-elegant-light"
                 disabled={isSubmitting}
               >
-                {isSubmitting ? "LÄHETETÄÄN..." : "LÄHETÄ"}
+                {isSubmitting ? tCommon('buttons.sending') : tCommon('buttons.send')}
               </Button>
             </div>
           </form>

@@ -1,24 +1,42 @@
 import React from 'react';
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { useCommonTranslation, usePagesTranslation, useSEOTranslation, useTestimonialsTranslation } from "../hooks/useTranslation";
 
 const Index = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const pageUrl = window.location.href;
-  const heroImageUrl = `${import.meta.env.BASE_URL}lovable-uploads/26dc5ff5-e153-4729-8dc3-1cee1e32f411.png`;
+  const { lang } = useParams<{ lang: string }>();
+  const { t: tCommon, isLoading: commonLoading } = useCommonTranslation();
+  const { t: tPages, isLoading: pagesLoading } = usePagesTranslation();
+  const { t: tSEO, isLoading: seoLoading } = useSEOTranslation();
+  const { t: tTestimonials, isLoading: testimonialsLoading } = useTestimonialsTranslation();
   
-  const testimonials = [
-    "Olit hyvä luomaan meidän välille parempaa ymmärrystä. Teet todella hyvää psykologin työtä ja olimme molemmat tosi tyytyväisiä. Olit hyvä pitämään keskustelussa punaista lankaa ja nostamaan esiin tunnepuolta ja ymmärrystä toisiamme kohtaan.",
-    "Olit todella helposti lähestyttävä ja sait vaivattomasti luotua ilmapiirin, missä oli helppo keskustella mistä tahansa.",
-    "Lähtökohtaisesti kaikki: meillä oli vain 3 kerran paketti, mutta pääsimme hyvin kiinni parisuhteen tärkeisiin teemoihin ja oppimaan uutta itsestä sekä kumppanista. Tämä siitäkin huolimatta, että keskustelemme paljon parisuhteessamme jo entuudestaan.",
-    "Terapeutti sopi hyvin meille molemmille ja loi turvallisen ja rauhallisen ilmapiirin tapaamisiin. Meidän välille rakennettiin entistä parempaa yhteyttä ja se tuntui tärkeältä."
-  ];
+  const currentLang = lang || 'fi';
+  
+  // Wait for all translations to load
+  if (commonLoading || pagesLoading || seoLoading || testimonialsLoading) {
+    return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
+  }
+  
+  const testimonials = tTestimonials('quotes', { returnObjects: true });
+  const testimonialsArray = Array.isArray(testimonials) ? testimonials : [];
+  
+  const pageUrl = window.location.href;
+  const baseUrl = window.location.origin;
+  const canonicalUrl = `${baseUrl}/${currentLang}`;
+  
+  const heroImageUrl = `${import.meta.env.BASE_URL}lovable-uploads/26dc5ff5-e153-4729-8dc3-1cee1e32f411.png`;
+
+  // Helper function to create language-aware links
+  const createLink = (path: string) => {
+    return `/${currentLang}${path}`;
+  };
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -36,14 +54,14 @@ const Index = () => {
       const data = await response.json();
 
       if (data.success) {
-        toast.success("Viesti lähetetty onnistuneesti!");
+        toast.success(tCommon('forms.messages.success'));
         (event.target as HTMLFormElement).reset();
       } else {
-        toast.error("Virhe viestin lähetyksessä. Yritä uudelleen.");
+        toast.error(tCommon('forms.messages.error'));
         console.log("Error", data);
       }
     } catch (error) {
-      toast.error("Virhe viestin lähetyksessä. Yritä uudelleen.");
+      toast.error(tCommon('forms.messages.error'));
       console.log("Error", error);
     }
 
@@ -55,7 +73,7 @@ const Index = () => {
     "@type": "Psychologist",
     "name": "Aino Pekkarinen",
     "image": `${import.meta.env.BASE_URL}lovable-uploads/Kuva1.jpg`,
-    "description": "Tarjoan pariterapiaa ja lyhytterapiaa mielen hyvinvoinnin tukemiseksi.",
+    "description": tSEO('schema.description'),
     "url": pageUrl,
     "telephone": "+358XXXXXXXXX", // Replace with your actual phone number
     "address": {
@@ -74,13 +92,13 @@ const Index = () => {
     "availableService": [
       {
         "@type": "Service",
-        "name": "Pariterapia",
-        "description": "Tukea parisuhteeseen ja kommunikaation parantamiseen."
+        "name": tSEO('schema.servicePariterapia.name'),
+        "description": tSEO('schema.servicePariterapia.description')
       },
       {
         "@type": "Service",
-        "name": "Lyhytterapia",
-        "description": "Tukea mielen hyvinvointiin ja psyykkiseen jaksamiseen."
+        "name": tSEO('schema.serviceLyhytterapia.name'),
+        "description": tSEO('schema.serviceLyhytterapia.description')
       }
     ]
   };
@@ -88,14 +106,14 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <Helmet>
-        <title>Pariterapia ja Lyhytterapia Helsingissä | Aino Pekkarinen</title>
-        <meta name="description" content="Aino Pekkarinen tarjoaa ammattitaitoista pariterapiaa ja lyhytterapiaa Helsingissä. Tukea parisuhteeseen ja mielen hyvinvointiin - varaa aikasi helposti verkosta." />
-        <meta name="keywords" content="pariterapia, lyhytterapia, terapeutti, Helsinki, parisuhdeterapia, psykoterapia, mielenterveys, hyvinvointi" />
+        <title>{tSEO('homepage.title')}</title>
+        <meta name="description" content={tSEO('homepage.description')} />
+        <meta name="keywords" content={tSEO('homepage.keywords')} />
         <meta name="author" content="Aino Pekkarinen" />
-        <link rel="canonical" href={pageUrl} />
+        <link rel="canonical" href={canonicalUrl} />
         
-        <meta property="og:title" content="Pariterapia ja Lyhytterapia | Aino Pekkarinen" />
-        <meta property="og:description" content="Ammattitaitoista pariterapiaa ja lyhytterapiaa Helsingissä. Tukea parisuhteeseen ja mielen hyvinvointiin." />
+        <meta property="og:title" content={tSEO('homepage.ogTitle')} />
+        <meta property="og:description" content={tSEO('homepage.ogDescription')} />
         <meta property="og:image" content={heroImageUrl} />
         <meta property="og:url" content={pageUrl} />
         <meta property="og:type" content="website" />
@@ -103,8 +121,8 @@ const Index = () => {
         <meta property="og:site_name" content="Aino Pekkarinen" />
 
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Pariterapia ja Lyhytterapia | Aino Pekkarinen" />
-        <meta name="twitter:description" content="Ammattitaitoista pariterapiaa ja lyhytterapiaa Helsingissä. Tukea parisuhteeseen ja mielen hyvinvointiin." />
+        <meta name="twitter:title" content={tSEO('homepage.twitterTitle')} />
+        <meta name="twitter:description" content={tSEO('homepage.twitterDescription')} />
         <meta name="twitter:image" content={heroImageUrl} />
 
         <script type="application/ld+json">
@@ -120,7 +138,6 @@ const Index = () => {
           className="w-full h-full object-cover"
           width="1920"
           height="1080"
-          fetchPriority="high"
         />
         <div className="absolute inset-0 flex flex-col items-center justify-end pb-20 md:pb-24">
           <div className="flex flex-col md:flex-row gap-4 md:gap-8">
@@ -130,7 +147,7 @@ const Index = () => {
               rel="noopener noreferrer"
               className="btn-elegant-light"
             >
-              VARAA AIKA PARITERAPIAAN
+              {tCommon('buttons.bookCouplesTherapy')}
             </a>
             <a
               href="https://vello.fi/aino-pekkarinen"
@@ -138,7 +155,7 @@ const Index = () => {
               rel="noopener noreferrer"
               className="btn-elegant-light"
             >
-              VARAA AIKA LYHYTTERAPIAAN
+              {tCommon('buttons.bookShortTherapy')}
             </a>
           </div>
         </div>
@@ -148,7 +165,7 @@ const Index = () => {
       <div className="w-full bg-white py-20 md:py-28">
         <div className="max-w-3xl mx-auto px-4 text-center">
           <h2 className="font-light text-2xl md:text-3xl lg:text-4xl text-[#131313] leading-relaxed">
-            Tukenasi rakentamassa läheisiä ja kestäviä rakkaussuhteita sekä mielen hyvinvointia.
+            {tPages('homepage.hero.tagline')}
           </h2>
         </div>
       </div>
@@ -156,8 +173,8 @@ const Index = () => {
       {/* Services Section */}
       <div className="max-w-7xl mx-auto px-4 py-20 md:py-28">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-          <Link 
-            to="/palvelut"
+          <a 
+            href={createLink("/palvelut")}
             className="group overflow-hidden"
           >
             <div className="aspect-square overflow-hidden mb-4">
@@ -170,12 +187,12 @@ const Index = () => {
                 loading="lazy"
               />
             </div>
-            <h3 className="text-xl md:text-2xl font-light mb-2">Pariterapia</h3>
-            <p className="text-sm text-gray-600 font-light">Tukea parisuhteeseen ja kommunikaation parantamiseen.</p>
-          </Link>
+            <h3 className="text-xl md:text-2xl font-light mb-2">{tPages('homepage.services.couples.title')}</h3>
+            <p className="text-sm text-gray-600 font-light">{tPages('homepage.services.couples.description')}</p>
+          </a>
 
-          <Link 
-            to="/palvelut"
+          <a 
+            href={createLink("/palvelut")}
             className="group overflow-hidden"
           >
             <div className="aspect-square overflow-hidden mb-4">
@@ -188,12 +205,12 @@ const Index = () => {
                 loading="lazy"
               />
             </div>
-            <h3 className="text-xl md:text-2xl font-light mb-2">Lyhytterapia</h3>
-            <p className="text-sm text-gray-600 font-light">Tukea mielen hyvinvointiin ja psyykkiseen jaksamiseen.</p>
-          </Link>
+            <h3 className="text-xl md:text-2xl font-light mb-2">{tPages('homepage.services.shortTerm.title')}</h3>
+            <p className="text-sm text-gray-600 font-light">{tPages('homepage.services.shortTerm.description')}</p>
+          </a>
 
-          <Link 
-            to="/palvelut"
+          <a 
+            href={createLink("/palvelut")}
             className="group overflow-hidden"
           >
             <div className="aspect-square overflow-hidden mb-4">
@@ -206,16 +223,16 @@ const Index = () => {
                 loading="lazy"
               />
             </div>
-            <h3 className="text-xl md:text-2xl font-light mb-2">Puheenvuorot</h3>
-            <p className="text-sm text-gray-600 font-light">Ammattimaisia puheenvuoroja parisuhteen ja mielen hyvinvoinnin teemoista.</p>
-          </Link>
+            <h3 className="text-xl md:text-2xl font-light mb-2">{tPages('homepage.services.speaking.title')}</h3>
+            <p className="text-sm text-gray-600 font-light">{tPages('homepage.services.speaking.description')}</p>
+          </a>
         </div>
       </div>
 
       {/* Testimonials Section */}
       <div className="w-full bg-[#f8f7f5] py-20 md:py-28">
         <div className="max-w-5xl mx-auto px-4">
-          <h2 className="section-title">ASIAKASPALAUTTEITA</h2>
+          <h2 className="section-title">{tCommon('sections.testimonials')}</h2>
           
           <Carousel 
             className="w-full"
@@ -225,7 +242,7 @@ const Index = () => {
             }}
           >
             <CarouselContent>
-              {testimonials.map((testimonial, index) => (
+              {testimonialsArray.map((testimonial, index) => (
                 <CarouselItem key={index} className="pl-4 md:basis-2/3 mx-auto">
                   <div className="bg-white p-8 md:p-12">
                     <p className="text-base md:text-lg text-gray-600 font-light leading-relaxed">"{testimonial}"</p>
@@ -244,17 +261,16 @@ const Index = () => {
       {/* About/Services Banner */}
       <div className="w-full bg-white py-20 md:py-28">
         <div className="max-w-3xl mx-auto px-4 text-center">
-          <h2 className="section-title">HALUAN TARJOTA SINULLE PARASTA MAHDOLLISTA APUA</h2>
+          <h2 className="section-title">{tPages('homepage.about.title')}</h2>
           <p className="text-lg text-gray-600 font-light mb-10 leading-relaxed">
-            Tarjoan ammattitaitoista pariterapiaa ja lyhytterapiaa, joka perustuu tieteelliseen tutkimukseen ja vuosien kokemukseen.
-            Yhdistän terapiatyössäni tutkittuja työkaluja ja asiakkaan toiveiden ja tarpeiden kuuntelua.
+            {tPages('homepage.about.description')}
           </p>
-          <Link 
-            to="/palvelut" 
+          <a 
+            href={createLink("/palvelut")}
             className="btn-elegant inline-block"
           >
-            PALVELUT
-          </Link>
+            {tCommon('buttons.services')}
+          </a>
         </div>
       </div>
 
@@ -262,7 +278,7 @@ const Index = () => {
       <div className="w-full bg-[#131313] py-20 md:py-28">
         <div className="max-w-2xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-2xl md:text-3xl font-light text-white mb-4 tracking-wider">YHTEYDENOTTO</h2>
+            <h2 className="text-2xl md:text-3xl font-light text-white mb-4 tracking-wider">{tCommon('sections.contact')}</h2>
             <div className="flex justify-center mb-8">
               <img 
                 src={`${import.meta.env.BASE_URL}lovable-uploads/Kuva1.jpg`}
@@ -282,7 +298,7 @@ const Index = () => {
                 name="name"
                 type="text"
                 required
-                placeholder="Nimi"
+                placeholder={tCommon('forms.placeholders.name')}
                 className="elegant-input text-white placeholder:text-gray-400"
               />
             </div>
@@ -293,7 +309,7 @@ const Index = () => {
                 name="email"
                 type="email"
                 required
-                placeholder="Sähköposti"
+                placeholder={tCommon('forms.placeholders.email')}
                 className="elegant-input text-white placeholder:text-gray-400"
               />
             </div>
@@ -303,7 +319,7 @@ const Index = () => {
                 id="phone"
                 name="phone"
                 type="tel"
-                placeholder="Puhelin"
+                placeholder={tCommon('forms.placeholders.phone')}
                 className="elegant-input text-white placeholder:text-gray-400"
               />
             </div>
@@ -313,7 +329,7 @@ const Index = () => {
                 id="message"
                 name="message"
                 required
-                placeholder="Viesti"
+                placeholder={tCommon('forms.placeholders.message')}
                 className="elegant-input text-white placeholder:text-gray-400 min-h-[120px] resize-none"
               />
             </div>
@@ -324,7 +340,7 @@ const Index = () => {
                 className="btn-elegant-light"
                 disabled={isSubmitting}
               >
-                {isSubmitting ? "LÄHETETÄÄN..." : "LÄHETÄ"}
+                {isSubmitting ? tCommon('buttons.sending') : tCommon('buttons.send')}
               </Button>
             </div>
           </form>
