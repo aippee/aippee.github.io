@@ -21,7 +21,7 @@ const Yhteydenotto = () => {
     setIsSubmitting(true);
     
     const formData = new FormData(event.currentTarget);
-    formData.append("access_key", import.meta.env.VITE_WEB3FORMS_ACCESS_KEY);
+    formData.append("access_key", "ce2eb7c7-2bea-4f74-97b2-d60622f8ddd8");
 
     try {
       const response = await fetch("https://api.web3forms.com/submit", {

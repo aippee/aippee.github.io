@@ -5,26 +5,61 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import { useCommonTranslation, usePagesTranslation, useSEOTranslation, useTestimonialsTranslation } from "../hooks/useTranslation";
+import { useTranslation } from "react-i18next";
 
 const Minusta = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { t: tCommon } = useCommonTranslation();
-  const { t: tPages } = usePagesTranslation();
-  const { t: tSEO } = useSEOTranslation();
-  const { t: tTestimonials } = useTestimonialsTranslation();
   
-  const heroImageUrl = `${import.meta.env.BASE_URL}lovable-uploads/26dc5ff5-e153-4729-8dc3-1cee1e32f411.png`;
-  const pageUrl = window.location.href;
+  // Use the base useTranslation hook and check if i18next is ready
+  const { t, i18n, ready } = useTranslation(['common', 'pages', 'seo', 'testimonials']);
   
-  const testimonials = tTestimonials('quotes', { returnObjects: true }) as string[];
+  // If translations are still loading, show loading state
+  if (!ready || !i18n.isInitialized) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-xl">Loading translations...</div>
+      </div>
+    );
+  }
+
+  // Now we can safely get translations
+  const aboutTitle = t('about.title', { ns: 'pages' }) || 'MINUSTA';
+  const bio1 = t('about.bio.paragraph1', { ns: 'pages' }) || 'Loading bio...';
+  
+  const heroImageUrl = `/lovable-uploads/26dc5ff5-e153-4729-8dc3-1cee1e32f411.png`;
+  const pageUrl = typeof window !== 'undefined' ? window.location.href : '';
+  
+  // Safely get testimonials - only when translations are ready
+  let testimonials: string[] = [];
+  try {
+    const testimonialsData = t('quotes', { ns: 'testimonials', returnObjects: true });
+    // Make sure it's an array and contains only strings
+    if (Array.isArray(testimonialsData)) {
+      testimonials = testimonialsData.filter((item): item is string => typeof item === 'string');
+    } else {
+      console.warn('Testimonials data is not an array:', testimonialsData);
+      testimonials = [];
+    }
+  } catch (error) {
+    console.error('Error loading testimonials:', error);
+    testimonials = [];
+  }
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsSubmitting(true);
     
     const formData = new FormData(event.currentTarget);
-    formData.append("access_key", import.meta.env.VITE_WEB3FORMS_ACCESS_KEY);
+    // Use environment variable safely
+    const accessKey = "ce2eb7c7-2bea-4f74-97b2-d60622f8ddd8";
+    
+    if (!accessKey) {
+      toast.error('Configuration error: Missing access key');
+      setIsSubmitting(false);
+      return;
+    }
+    
+    formData.append("access_key", accessKey);
 
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
@@ -35,14 +70,14 @@ const Minusta = () => {
       const data = await response.json();
 
       if (data.success) {
-        toast.success(tCommon('forms.messages.success'));
+        toast.success(t('forms.messages.success', { ns: 'common' }) || 'Message sent successfully!');
         (event.target as HTMLFormElement).reset();
       } else {
-        toast.error(tCommon('forms.messages.error'));
+        toast.error(t('forms.messages.error', { ns: 'common' }) || 'Error sending message');
         console.log("Error", data);
       }
     } catch (error) {
-      toast.error(tCommon('forms.messages.error'));
+      toast.error(t('forms.messages.error', { ns: 'common' }) || 'Error sending message');
       console.log("Error", error);
     }
 
@@ -53,9 +88,9 @@ const Minusta = () => {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Aino Pekkarinen",
-    "jobTitle": tSEO('schema.jobTitle'),
-    "image": `${import.meta.env.BASE_URL}lovable-uploads/Kuva1.jpg`,
-    "description": tPages('about.bio.paragraph1'),
+    "jobTitle": t('schema.jobTitle', { ns: 'seo' }) || "Psychologist",
+    "image": `/lovable-uploads/Kuva1.jpg`,
+    "description": bio1,
     "url": pageUrl,
     "knowsLanguage": ["fi", "en"],
     "address": {
@@ -69,17 +104,17 @@ const Minusta = () => {
   return (
     <>
       <Helmet>
-        <title>{tSEO('about.title')}</title>
+        <title>{t('about.title', { ns: 'seo' }) || 'About - Aino Pekkarinen'}</title>
         <meta 
           name="description" 
-          content={tSEO('about.description')}
+          content={t('about.description', { ns: 'seo' }) || 'About Aino Pekkarinen'}
         />
-        <meta name="keywords" content={tSEO('about.keywords')} />
+        <meta name="keywords" content={t('about.keywords', { ns: 'seo' }) || ''} />
         <meta name="author" content="Aino Pekkarinen" />
         <link rel="canonical" href={pageUrl} />
         
-        <meta property="og:title" content={tSEO('about.ogTitle')} />
-        <meta property="og:description" content={tSEO('about.ogDescription')} />
+        <meta property="og:title" content={t('about.ogTitle', { ns: 'seo' }) || aboutTitle} />
+        <meta property="og:description" content={t('about.ogDescription', { ns: 'seo' }) || bio1} />
         <meta property="og:image" content={heroImageUrl} />
         <meta property="og:url" content={pageUrl} />
         <meta property="og:type" content="profile" />
@@ -87,8 +122,8 @@ const Minusta = () => {
         <meta property="og:site_name" content="Aino Pekkarinen" />
 
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={tSEO('about.twitterTitle')} />
-        <meta name="twitter:description" content={tSEO('about.twitterDescription')} />
+        <meta name="twitter:title" content={t('about.twitterTitle', { ns: 'seo' }) || aboutTitle} />
+        <meta name="twitter:description" content={t('about.twitterDescription', { ns: 'seo' }) || bio1} />
         <meta name="twitter:image" content={heroImageUrl} />
 
         <script type="application/ld+json">
@@ -105,9 +140,13 @@ const Minusta = () => {
           width="1920"
           height="1080"
           fetchPriority="high"
+          onError={(e) => {
+            console.error('Hero image failed to load:', heroImageUrl);
+            e.currentTarget.style.display = 'none';
+          }}
         />
         <div className="absolute inset-0 flex items-center justify-center">
-          <h1 className="hero-header text-white text-5xl md:text-7xl lg:text-8xl font-light tracking-wider">{tCommon('navigation.about').toUpperCase()}</h1>
+          <h1 className="hero-header text-white text-5xl md:text-7xl lg:text-8xl font-light tracking-wider">{aboutTitle.toUpperCase()}</h1>
         </div>
       </div>
 
@@ -118,25 +157,29 @@ const Minusta = () => {
             {/* Image on the left for desktop, but will show below text on mobile */}
             <div className="relative overflow-hidden order-last md:order-first">
               <img
-                src={`${import.meta.env.BASE_URL}lovable-uploads/81e208dd-6290-4eac-b9a1-a40894223f43.png`}
+                src="/lovable-uploads/81e208dd-6290-4eac-b9a1-a40894223f43.png"
                 alt="Henkilö katsoo ikkunasta ulos - Lyhytterapia palvelu"
                 className="w-full h-auto object-cover"
+                onError={(e) => {
+                  console.error('About image failed to load');
+                  e.currentTarget.style.display = 'none';
+                }}
               />
             </div>
             
             {/* Text content on the right */}
             <div className="prose max-w-none">
               <p className="mb-8 text-base md:text-lg font-light leading-relaxed text-gray-700">
-                {tPages('about.bio.paragraph1')}
+                {bio1}
               </p>
               <p className="mb-8 text-base md:text-lg font-light leading-relaxed text-gray-700">
-                {tPages('about.bio.paragraph2')}
+                {t('about.bio.paragraph2', { ns: 'pages' }) || 'Loading...'}
               </p>
               <p className="mb-8 text-base md:text-lg font-light leading-relaxed text-gray-700">
-                {tPages('about.bio.paragraph3')}
+                {t('about.bio.paragraph3', { ns: 'pages' }) || 'Loading...'}
               </p>
               <p className="mb-8 text-base md:text-lg font-light leading-relaxed text-gray-700">
-                {tPages('about.bio.paragraph4')}
+                {t('about.bio.paragraph4', { ns: 'pages' }) || 'Loading...'}
               </p>
             </div>
           </div>
@@ -147,7 +190,7 @@ const Minusta = () => {
       <div className="w-full bg-[#f8f7f5] py-20 md:py-28">
         <div className="max-w-3xl mx-auto px-4 text-center">
           <h2 className="font-light text-2xl md:text-3xl text-[#131313] leading-relaxed">
-            "{tPages('about.quote')}"
+            "{t('about.quote', { ns: 'pages' }) || 'Loading quote...'}"
           </h2>
         </div>
       </div>
@@ -155,29 +198,31 @@ const Minusta = () => {
       {/* Testimonials Section */}
       <div className="w-full bg-white py-20 md:py-28">
         <div className="max-w-5xl mx-auto px-4">
-          <h2 className="section-title">{tCommon('sections.testimonials')}</h2>
+          <h2 className="section-title">{t('sections.testimonials', { ns: 'common' }) || 'Testimonials'}</h2>
           
-          <Carousel 
-            className="w-full"
-            opts={{
-              align: "center",
-              loop: true,
-            }}
-          >
-            <CarouselContent>
-              {testimonials.map((testimonial, index) => (
-                <CarouselItem key={index} className="pl-4 md:basis-2/3 mx-auto">
-                  <div className="bg-[#f8f7f5] p-8 md:p-12">
-                    <p className="text-base md:text-lg text-gray-600 font-light leading-relaxed">"{testimonial}"</p>
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <div className="flex justify-center gap-2 mt-8">
-              <CarouselPrevious className="static transform-none border border-gray-300 hover:bg-gray-50 rounded-none h-10 w-10" />
-              <CarouselNext className="static transform-none border border-gray-300 hover:bg-gray-50 rounded-none h-10 w-10" />
-            </div>
-          </Carousel>
+          {testimonials.length > 0 && (
+            <Carousel 
+              className="w-full"
+              opts={{
+                align: "center",
+                loop: true,
+              }}
+            >
+              <CarouselContent>
+                {testimonials.map((testimonial, index) => (
+                  <CarouselItem key={index} className="pl-4 md:basis-2/3 mx-auto">
+                    <div className="bg-[#f8f7f5] p-8 md:p-12">
+                      <p className="text-base md:text-lg text-gray-600 font-light leading-relaxed">"{testimonial}"</p>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <div className="flex justify-center gap-2 mt-8">
+                <CarouselPrevious className="static transform-none border border-gray-300 hover:bg-gray-50 rounded-none h-10 w-10" />
+                <CarouselNext className="static transform-none border border-gray-300 hover:bg-gray-50 rounded-none h-10 w-10" />
+              </div>
+            </Carousel>
+          )}
         </div>
       </div>
 
@@ -185,15 +230,19 @@ const Minusta = () => {
       <div className="w-full bg-[#131313] py-20 md:py-28">
         <div className="max-w-2xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-2xl md:text-3xl font-light text-white mb-4 tracking-wider">{tCommon('sections.contact')}</h2>
+            <h2 className="text-2xl md:text-3xl font-light text-white mb-4 tracking-wider">{t('sections.contact', { ns: 'common' }) || 'Contact'}</h2>
             <div className="flex justify-center mb-8">
               <img 
-                src={`${import.meta.env.BASE_URL}lovable-uploads/Kuva1.jpg`}
+                src="/lovable-uploads/Kuva1.jpg"
                 alt="Aino Pekkarinen" 
                 className="w-28 h-28 object-cover rounded-full"
                 width="112"
                 height="112"
                 loading="lazy"
+                onError={(e) => {
+                  console.error('Profile image failed to load');
+                  e.currentTarget.style.display = 'none';
+                }}
               />
             </div>
           </div>
@@ -205,7 +254,7 @@ const Minusta = () => {
                 name="name"
                 type="text"
                 required
-                placeholder={tCommon('forms.placeholders.name')}
+                placeholder={t('forms.placeholders.name', { ns: 'common' }) || 'Name'}
                 className="elegant-input text-white placeholder:text-gray-400"
               />
             </div>
@@ -216,7 +265,7 @@ const Minusta = () => {
                 name="email"
                 type="email"
                 required
-                placeholder={tCommon('forms.placeholders.email')}
+                placeholder={t('forms.placeholders.email', { ns: 'common' }) || 'Email'}
                 className="elegant-input text-white placeholder:text-gray-400"
               />
             </div>
@@ -226,7 +275,7 @@ const Minusta = () => {
                 id="phone"
                 name="phone"
                 type="tel"
-                placeholder={tCommon('forms.placeholders.phone')}
+                placeholder={t('forms.placeholders.phone', { ns: 'common' }) || 'Phone'}
                 className="elegant-input text-white placeholder:text-gray-400"
               />
             </div>
@@ -236,7 +285,7 @@ const Minusta = () => {
                 id="message"
                 name="message"
                 required
-                placeholder={tCommon('forms.placeholders.message')}
+                placeholder={t('forms.placeholders.message', { ns: 'common' }) || 'Message'}
                 className="elegant-input text-white placeholder:text-gray-400 min-h-[120px] resize-none"
               />
             </div>
@@ -247,7 +296,7 @@ const Minusta = () => {
                 className="btn-elegant-light"
                 disabled={isSubmitting}
               >
-                {isSubmitting ? tCommon('buttons.sending') : tCommon('buttons.send')}
+                {isSubmitting ? (t('buttons.sending', { ns: 'common' }) || 'Sending...') : (t('buttons.send', { ns: 'common' }) || 'Send')}
               </Button>
             </div>
           </form>
