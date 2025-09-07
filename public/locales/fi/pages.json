@@ -1,0 +1,54 @@
+{
+  "homepage": {
+    "hero": {
+      "tagline": "Tukenasi rakentamassa läheisiä ja kestäviä rakkaussuhteita sekä mielen hyvinvointia."
+    },
+    "services": {
+      "couples": {
+        "title": "Pariterapia",
+        "description": "Tukea parisuhteeseen ja kommunikaation parantamiseen."
+      },
+      "shortTerm": {
+        "title": "Lyhytterapia", 
+        "description": "Tukea mielen hyvinvointiin ja psyykkiseen jaksamiseen."
+      },
+      "speaking": {
+        "title": "Puheenvuorot",
+        "description": "Asiantuntevaa puhetta ihmissuhteista ja hyvinvoinnista."
+      }
+    },
+    "about": {
+      "title": "HALUAN TARJOTA SINULLE PARASTA MAHDOLLISTA APUA",
+      "description": "Tarjoan ammattitaitoista pariterapiaa ja lyhytterapiaa, joka perustuu tieteelliseen tutkimukseen ja vuosien kokemukseen. Yhdistän terapiatyössäni tutkittuja työkaluja ja asiakkaan toiveiden ja tarpeiden kuuntelua."
+    }
+  },
+  "about": {
+    "title": "MINUSTA",
+    "bio": {
+      "paragraph1": "Olen psykologi jonka intohimona on auttaa ihmisiä rakentamaan tyydyttäviä ja rakastavia ihmissuhteita. Olen palvellut jo satoja asiakkaita, pariskuntia sekä yksilöasiakkaita, ja auttanut heitä kohti yhdessä määriteltyjä tavoitteita.",
+      "paragraph2": "Asiakastyössä olen lämmin ja empaattinen, ja haluan luoda asiakkaalle turvallisen tilan tutkiskella omia taustoja, tunteita ja kokemuksia.",
+      "paragraph3": "Pidän tärkeänä sitä että asiakastyö nojaa tutkittuihin ja tuloksellisiin työkaluihin, mutta samalla aina lähdetään liikkeelle juuri sinulle tärkeistä ja yhdessä mietityistä tavoitteista käsin.",
+      "paragraph4": "Pariterapiatyössäni nojaan vahvasti tunnekeskeisen pariterapian viitekehykseen, joka on maailman tutkituin ja tuloksellisin pariterapian muoto. Yksilövastaanotoilla yhdistelen usein tunnekeskeisiä, sekä kognitiivis-analyyttisiä työkaluja lyhytterapeuttisellä otteella."
+    },
+    "quote": "Haluan auttaa asiakkaitani katsomaan itseään lempeämmin sekä pariterapiatyössä käymään vaikeitakin keskusteluja ja löytämään uudenlaista yhteyttä niiden keskeltä"
+  },
+  "services": {
+    "title": "PALVELUT",
+    "couples": {
+      "title": "PARITERAPIA",
+      "description1": "Pariterapiaprosessit toteutetaan LAV-coaching yrityksen kautta. Liikkeelle voit lähteä LAV-coaching ajanvarauksen kautta. Käyntipaketit ovat jotakin 2-10 tapaamisen välillä, mutta käyntejä voi sopia tarpeen mukaan myös enemmän. Voit myös aloittaa 20min tutustumiskäynnillä kanssani, jos haluatte ensin kokeilla sitä miltä parisuhteen asioista tuntuu jutella.",
+      "description2": "Pariterapiaan voitte tulla työstämään esimerkiksi etäisyyden tunteita, toistuvia konflikteja, arvoihin tai näkemyseroihin liittyviä erimielisyyksiä, luottamukseen liittyviä haasteita tai seksuaalisuuden ja läheisyyden teemoja. Pariterapiatyössä hyödynnän tunnekeskeisen pariterapian viitekehystä, joka on maailman tutkituin ja tehokkain pariterapian viitekehys. Lue lisää tunnekeskeisestä pariterapiasta täältä."
+    },
+    "shortTerm": {
+      "title": "LYHYTTERAPIA",
+      "description1": "Lyhytterapia tarkoittaa yksilöterapiaa, joka on kestoltaan tyypillisesti lyhyempää kuin psykoterapia. Lyhytterapiakäynnit ovat yleensä jotakin muutamasta käynnistä puolen vuoden tai vuodenkin mittaiseen prosessiin. Voit tehdä tarkempaa suunnitelmaa kanssani kun pääsemme käyntien kanssa alkuun.",
+      "description2": "Lyhytterapiassa voit käsitellä kanssani mieltä painavia asioitasi. Käynneiltä voit saada tukea esimerkiksi kuormittavaan elämäntilanteeseen, haasteisiin ihmissuhteissa tai parisuhteessa, tai vaikkapa elämääsi haittaaviin ahdistus- tai masennusoireisiin. Käynneille voit tulla myös jos haluat ymmärtää itseäsi tai jotakin toimintataapasi paremmin, tai tehdä muutoksia elämässäsi toivomaasi suuntaan."
+    },
+    "speaking": {
+      "title": "PUHEENVUOROT",
+      "description1": "Tarjoan räätälöityjä puheenvuoroja ihmissuhteista, rakkauden psykologiasta, vuorovaikutus- ja tunnetaidoista tapahtumiin. Puheenvuoroni sopivat erilaisiin tilaisuuksiin organisaatioille, yrityksille ja yhdistyksille.",
+      "description2": "Puheenvuorojen sisältö räätälöidään aina tilaisuuden ja yleisön mukaan, jotta kokemus olisi mahdollisimman hyödyllinen ja oivaltava kaikille osallistujille.",
+      "contactText": "Ota yhteyttä niin räätälöidään tarpeisiisi sopiva kokonaisuus!"
+    }
+  }
+} 

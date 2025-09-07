@@ -1,0 +1,36 @@
+{
+  "navigation": {
+    "home": "Koti",
+    "services": "Palvelut",
+    "about": "Minusta",
+    "contact": "Yhteydenotto",
+    "bookAppointment": "Varaa aika"
+  },
+  "buttons": {
+    "bookCouplesTherapy": "Varaa aika pariterapiaan",
+    "bookShortTherapy": "Varaa aika lyhytterapiaan",
+    "services": "Palvelut",
+    "send": "Lähetä",
+    "sending": "Lähetetään..."
+  },
+  "forms": {
+    "placeholders": {
+      "name": "Nimi",
+      "email": "Sähköposti",
+      "phone": "Puhelin",
+      "message": "Viesti"
+    },
+    "messages": {
+      "success": "Viesti lähetetty onnistuneesti!",
+      "error": "Virhe viestin lähetyksessä. Yritä uudelleen."
+    }
+  },
+  "sections": {
+    "testimonials": "Asiakaspalautteita",
+    "contact": "Yhteydenotto"
+  },
+  "notFound": {
+    "message": "Oops! Sivua ei löytynyt",
+    "returnHome": "Palaa etusivulle"
+  }
+} 

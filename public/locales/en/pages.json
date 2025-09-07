@@ -1,0 +1,55 @@
+{
+  "_version": "2025-01-27-updated",
+  "homepage": {
+    "hero": {
+      "tagline": "Supporting you in building close and lasting loving relationships and mental well-being. Therapy in English available."
+    },
+    "services": {
+      "couples": {
+        "title": "Couples Therapy",
+        "description": "Support for relationships and improving communication."
+      },
+      "shortTerm": {
+        "title": "Short-term Therapy", 
+        "description": "Support for mental well-being and psychological resilience."
+      },
+      "speaking": {
+        "title": "Speaking Engagements",
+        "description": "Expert presentations on relationships and well-being."
+      }
+    },
+    "about": {
+      "title": "I WANT TO OFFER YOU THE BEST POSSIBLE HELP",
+      "description": "I offer professional couples therapy and short-term therapy based on scientific research and years of experience. In my therapeutic work, I combine evidence-based tools with listening to the client's wishes and needs."
+    }
+  },
+  "about": {
+    "title": "ABOUT ME",
+    "bio": {
+      "paragraph1": "I am a psychologist whose passion is helping people build satisfying and loving relationships. I have served hundreds of clients, couples and individuals, and helped them towards mutually defined goals.",
+      "paragraph2": "In my client work, I am warm and empathetic, and I want to create a safe space for clients to explore their backgrounds, feelings and experiences.",
+      "paragraph3": "I believe it's important that client work is based on researched and effective tools, but at the same time we always start from goals that are important to you and thought through together.",
+      "paragraph4": "In my couples therapy work, I rely strongly on the Emotionally Focused Therapy framework, which is the world's most researched and effective form of couples therapy. In individual sessions, I often combine emotion-focused and cognitive-analytical tools with a short-term therapeutic approach."
+    },
+    "quote": "I want to help my clients look at themselves more gently and, in couples therapy work, have even difficult conversations and find new kinds of connection through them"
+  },
+  "services": {
+    "title": "SERVICES",
+    "couples": {
+      "title": "COUPLES THERAPY",
+      "description1": "Couples therapy processes are carried out through LAV-coaching company. You can get started through LAV-coaching appointment booking. Session packages are typically between 2-10 sessions, but sessions can also be arranged for more according to need. You can also start with a 20-minute introductory session with me if you want to first try what it feels like to talk about relationship matters.",
+      "description2": "You can come to couples therapy to work on, for example, feelings of distance, recurring conflicts, disagreements related to values or differences of opinion, trust-related challenges, or themes of sexuality and intimacy. In couples therapy work, I utilize the Emotionally Focused Therapy framework, which is the world's most researched and effective couples therapy framework."
+    },
+    "shortTerm": {
+      "title": "SHORT-TERM THERAPY",
+      "description1": "Short-term therapy means individual therapy that is typically shorter in duration than psychotherapy. Short-term therapy sessions are usually anything from a few sessions to a half-year or even year-long process. You can make more detailed plans with me once we get started with the sessions.",
+      "description2": "In short-term therapy, you can work through matters that weigh on your mind with me. You can get support from sessions for, for example, a burdensome life situation, challenges in relationships or partnerships, or anxiety or depressive symptoms that interfere with your life. You can also come to sessions if you want to understand yourself or some of your behavioral patterns better, or make changes in your life in the direction you desire."
+    },
+    "speaking": {
+      "title": "SPEAKING ENGAGEMENTS",
+      "description1": "I offer customized presentations on relationships, psychology of love, communication and emotional skills for events. My presentations are suitable for various occasions for organizations, companies and associations.",
+      "description2": "The content of the presentations is always tailored according to the occasion and audience, so that the experience is as useful and insightful as possible for all participants.",
+      "contactText": "Get in touch and we'll tailor a package that suits your needs!"
+    }
+  }
+} 

@@ -1,0 +1,54 @@
+{
+  "homepage": {
+    "title": "Therapy in Helsinki - Couples Therapy & Short-term Therapy | Aino Pekkarinen",
+    "description": "Professional therapy services in Helsinki. Aino Pekkarinen offers couples therapy, relationship counseling, and short-term therapy in English. Book your appointment online.",
+    "keywords": "therapy Helsinki, couples therapy Helsinki, relationship counseling Helsinki, therapist Helsinki, psychotherapy Helsinki, therapy in English Helsinki, marriage counseling Helsinki, mental health Helsinki",
+    "ogTitle": "Therapy in Helsinki - Couples & Short-term Therapy | Aino Pekkarinen",
+    "ogDescription": "Professional therapy services in Helsinki. Couples therapy, relationship counseling, and short-term therapy in English.",
+    "twitterTitle": "Therapy in Helsinki - Couples & Short-term Therapy | Aino Pekkarinen",
+    "twitterDescription": "Professional therapy services in Helsinki. Couples therapy, relationship counseling, and short-term therapy in English."
+  },
+  "about": {
+    "title": "About Me - Therapist in Helsinki | Aino Pekkarinen",
+    "description": "Meet Aino Pekkarinen, experienced therapist in Helsinki offering couples therapy and short-term therapy in English. Learn about my background and approach to therapy.",
+    "keywords": "Aino Pekkarinen, therapist Helsinki, psychologist Helsinki, couples therapist Helsinki, therapy in English, emotionally focused therapy Helsinki",
+    "ogTitle": "About Me - Therapist in Helsinki | Aino Pekkarinen",
+    "ogDescription": "Meet Aino Pekkarinen, experienced therapist in Helsinki offering therapy services in English.",
+    "twitterTitle": "About Me - Therapist in Helsinki | Aino Pekkarinen",
+    "twitterDescription": "Meet Aino Pekkarinen, experienced therapist in Helsinki offering therapy services in English."
+  },
+  "services": {
+    "title": "Therapy Services in Helsinki: Couples Therapy, Short-term Therapy | Aino Pekkarinen",
+    "description": "Professional therapy services in Helsinki. Couples therapy, relationship counseling, short-term therapy, and speaking engagements. Therapy available in English.",
+    "keywords": "therapy services Helsinki, couples therapy Helsinki, short-term therapy Helsinki, relationship counseling Helsinki, therapy in English Helsinki, marriage therapy Helsinki",
+    "ogTitle": "Therapy Services in Helsinki: Couples & Short-term Therapy | Aino Pekkarinen",
+    "ogDescription": "Professional therapy services in Helsinki: couples therapy, short-term therapy, and speaking engagements. Available in English.",
+    "twitterTitle": "Therapy Services in Helsinki: Couples & Short-term Therapy | Aino Pekkarinen",
+    "twitterDescription": "Professional therapy services in Helsinki: couples therapy, short-term therapy, and speaking engagements. Available in English."
+  },
+  "contact": {
+    "title": "Contact - Book Therapy Appointment in Helsinki | Aino Pekkarinen",
+    "description": "Contact Aino Pekkarinen to book therapy appointment in Helsinki. Couples therapy, relationship counseling, and short-term therapy available in English.",
+    "keywords": "book therapy Helsinki, therapy appointment Helsinki, contact therapist Helsinki, couples therapy booking Helsinki, therapy in English Helsinki",
+    "ogTitle": "Contact - Book Therapy Appointment in Helsinki | Aino Pekkarinen",
+    "ogDescription": "Contact me to book therapy appointment in Helsinki. Couples therapy and short-term therapy available in English.",
+    "twitterTitle": "Contact - Book Therapy Appointment in Helsinki | Aino Pekkarinen",
+    "twitterDescription": "Contact me to book therapy appointment in Helsinki. Couples therapy and short-term therapy available in English."
+  },
+  "notFound": {
+    "title": "Page Not Found - 404 | Aino Pekkarinen Therapy Helsinki",
+    "description": "The page you are looking for could not be found. Return to the homepage or use the navigation to find therapy services in Helsinki."
+  },
+  "schema": {
+    "description": "Professional therapy services in Helsinki. I offer couples therapy, relationship counseling, and short-term therapy in English to support mental wellbeing and relationship health.",
+    "jobTitle": "Psychologist and Therapist",
+    "servicePariterapia": {
+      "name": "Couples Therapy",
+      "description": "Professional couples therapy and relationship counseling in Helsinki. Support for relationships and improving communication."
+    },
+    "serviceLyhytterapia": {
+      "name": "Short-term Therapy",
+      "description": "Short-term therapy in Helsinki for mental wellbeing and psychological resilience. Available in English."
+    }
+  }
+} 
