@@ -138,9 +138,10 @@ const Palvelut = () => {
               <p className="mb-4 text-base md:text-lg font-light leading-relaxed text-gray-700">
                 {tPages('services.couples.description1')}
               </p>
-              <p className="mb-6 text-base md:text-lg font-light leading-relaxed text-gray-700">
-                {tPages('services.couples.description2')}
-              </p>
+              <p 
+                className="mb-6 text-base md:text-lg font-light leading-relaxed text-gray-700"
+                dangerouslySetInnerHTML={{ __html: tPages('services.couples.description2') }}
+              />
               <div className="flex flex-col sm:flex-row gap-3 md:gap-4 mb-6 md:mb-0">
                 <a
                   href="https://vello.fi/lav-coaching/v2-segment/eec4dab7"

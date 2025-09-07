@@ -36,8 +36,8 @@
     "title": "PALVELUT",
     "couples": {
       "title": "PARITERAPIA",
-      "description1": "Pariterapiaprosessit toteutetaan LAV-coaching yrityksen kautta. Liikkeelle voit lähteä LAV-coaching ajanvarauksen kautta. Käyntipaketit ovat jotakin 2-10 tapaamisen välillä, mutta käyntejä voi sopia tarpeen mukaan myös enemmän. Voit myös aloittaa 20min tutustumiskäynnillä kanssani, jos haluatte ensin kokeilla sitä miltä parisuhteen asioista tuntuu jutella.",
-      "description2": "Pariterapiaan voitte tulla työstämään esimerkiksi etäisyyden tunteita, toistuvia konflikteja, arvoihin tai näkemyseroihin liittyviä erimielisyyksiä, luottamukseen liittyviä haasteita tai seksuaalisuuden ja läheisyyden teemoja. Pariterapiatyössä hyödynnän tunnekeskeisen pariterapian viitekehystä, joka on maailman tutkituin ja tehokkain pariterapian viitekehys. Lue lisää tunnekeskeisestä pariterapiasta täältä."
+      "description1": "Pariterapiaprosessit ovat usein jotakin 3-10 tapaamisen väliltä, mutta käyntejä voidaan sopia tarpeen mukaan myös enemmän. Voit myös aloittaa 20min tutustumiskäynnillä kanssani, jos haluatte ensin kokeilla sitä miltä parisuhteen asioista tuntuu jutella.",
+      "description2": "Pariterapiaan voitte tulla työstämään esimerkiksi etäisyyden tunteita, toistuvia konflikteja, arvoihin tai näkemyseroihin liittyviä erimielisyyksiä, luottamukseen liittyviä haasteita tai seksuaalisuuden ja läheisyyden teemoja. Pariterapiatyössä hyödynnän tunnekeskeisen pariterapian viitekehystä, joka on maailman tutkituin ja tehokkain pariterapian viitekehys. Lue lisää tunnekeskeisestä pariterapiasta <a href=\"https://www.tunnekeskeinenpariterapia.fi/mitä-on-tunnekeskeinen-pariterapia\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline hover:text-gray-600\">täältä</a>."
     },
     "shortTerm": {
       "title": "LYHYTTERAPIA",
