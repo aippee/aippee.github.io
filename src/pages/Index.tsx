@@ -139,7 +139,21 @@ const Index = () => {
           width="1920"
           height="1080"
         />
-        <div className="absolute inset-0 flex flex-col items-center justify-end pb-20 md:pb-24">
+        <div className="absolute inset-0 flex flex-col items-center justify-end pb-20 md:pb-24 px-4">
+          {/* Dating Reset announcement */}
+          <a
+            href={createLink("/dating-reset")}
+            className="group mb-8 md:mb-10 inline-flex items-center gap-3 border border-white/60 bg-black/20 backdrop-blur-sm px-5 py-2.5 text-white text-[11px] md:text-xs uppercase tracking-[0.2em] hover:bg-white/10 transition-all duration-300"
+          >
+            <span className="relative flex h-2 w-2 shrink-0">
+              <span className="absolute inline-flex h-full w-full rounded-full bg-[#d8cfae] opacity-75 animate-ping" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-[#d8cfae]" />
+            </span>
+            <span>
+              {currentLang === 'fi' ? 'Uutuus: Dating Reset -odotuslista on auki' : 'New: Dating Reset waitlist is open'}
+            </span>
+            <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+          </a>
           <div className="flex flex-col md:flex-row gap-4 md:gap-8">
             <a
               href="https://vello.fi/lav-coaching/v2-segment/eec4dab7"
@@ -167,6 +181,24 @@ const Index = () => {
           <h2 className="font-light text-2xl md:text-3xl lg:text-4xl text-[#131313] leading-relaxed">
             {tPages('homepage.hero.tagline')}
           </h2>
+        </div>
+      </div>
+
+      {/* Dating Reset Section */}
+      <div className="w-full bg-[#131313] py-16 md:py-24">
+        <div className="max-w-3xl mx-auto px-4 text-center text-white">
+          <p className="text-[#d8cfae] uppercase text-xs tracking-[0.3em] mb-5">
+            {currentLang === 'fi' ? '✨ Uutuus · Pilottiryhmä tammikuussa 2027' : '✨ New · Pilot group January 2027'}
+          </p>
+          <h2 className="hero-header text-4xl md:text-6xl mb-6">Dating Reset</h2>
+          <p className="font-light text-base md:text-lg text-gray-300 leading-relaxed mb-10 max-w-2xl mx-auto">
+            {currentLang === 'fi'
+              ? 'Sinkkunaisille suunnattu, kahden psykologin ohjaama ryhmävalmennus. Liity odotuslistalle ja kuule ensimmäisten joukossa lisää – odotuslistalaisena saat myös mahdollisuuden Early Bird -etuhintaan.'
+              : 'A group coaching programme for single women, led by two psychologists. Join the waitlist to hear more first – waitlist members also get access to an Early Bird price.'}
+          </p>
+          <a href={createLink("/dating-reset")} className="btn-elegant-light inline-block">
+            {currentLang === 'fi' ? 'Liity odotuslistalle ❤️‍🔥' : 'Join the waitlist ❤️‍🔥'}
+          </a>
         </div>
       </div>
 
