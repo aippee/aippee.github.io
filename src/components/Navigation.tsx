@@ -46,6 +46,7 @@ const Navigation = () => {
     { path: "", label: t('navigation.home') },
     { path: "/palvelut", label: t('navigation.services') },
     { path: "/minusta", label: t('navigation.about') },
+    { path: "/dating-reset", label: "Dating Reset" },
     { path: "/yhteydenotto", label: t('navigation.contact') },
   ];
 
