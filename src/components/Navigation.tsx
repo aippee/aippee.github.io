@@ -79,9 +79,7 @@ const Navigation = () => {
             ))}
 
             <a
-              href="https://vello.fi/lav-coaching/v2-segment/80d541cd"
-              target="_blank"
-              rel="noopener noreferrer"
+              href={createLink("/yhteydenotto")}
               className="border border-white px-6 py-2 hover:bg-white/10 transition-all ml-4"
             >
               {t('navigation.bookAppointment')}
@@ -124,9 +122,7 @@ const Navigation = () => {
             ))}
 
             <a
-              href="https://vello.fi/lav-coaching/v2-segment/80d541cd"
-              target="_blank"
-              rel="noopener noreferrer"
+              href={createLink("/yhteydenotto")}
               className="mt-4 border border-gray-800 px-6 py-2 text-sm font-light text-gray-800 hover:bg-gray-800/5 transition-all uppercase tracking-widest"
               onClick={() => setIsMenuOpen(false)}
             >

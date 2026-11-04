@@ -54,7 +54,7 @@ function doPost(e) {
   if (SEND_NOTIFICATION) {
     try {
       MailApp.sendEmail({
-        to: Session.getEffectiveUser().getEmail(),
+        to: Session.getEffectiveUser().getEmail() + ',helmisilvennoinen@gmail.com',
         subject: 'Dating Reset – uusi odotuslistalainen: ' + clean(p.name),
         body:
           'Nimi: ' + clean(p.name) + '\n' +

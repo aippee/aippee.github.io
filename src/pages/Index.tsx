@@ -150,7 +150,7 @@ const Index = () => {
               <span className="relative inline-flex h-2 w-2 rounded-full bg-[#d8cfae]" />
             </span>
             <span>
-              {currentLang === 'fi' ? 'Uutuus: Dating Reset -odotuslista on auki' : 'New: Dating Reset waitlist is open'}
+              {currentLang === 'fi' ? 'Uutuus: Dating Reset – sinkkunaisten ryhmävalmennus, odotuslista auki' : 'New: Dating Reset – group coaching for single women, waitlist open'}
             </span>
             <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
           </a>
@@ -188,7 +188,7 @@ const Index = () => {
       <div className="w-full bg-[#131313] py-16 md:py-24">
         <div className="max-w-3xl mx-auto px-4 text-center text-white">
           <p className="text-[#d8cfae] uppercase text-xs tracking-[0.3em] mb-5">
-            {currentLang === 'fi' ? '✨ Uutuus · Pilottiryhmä tammikuussa 2027' : '✨ New · Pilot group January 2027'}
+            {currentLang === 'fi' ? '✨ Uutuus · Sinkkunaisten ryhmävalmennus · Tammikuu 2027' : '✨ New · Group coaching for single women · January 2027'}
           </p>
           <h2 className="hero-header text-4xl md:text-6xl mb-6">Dating Reset</h2>
           <p className="font-light text-base md:text-lg text-gray-300 leading-relaxed mb-10 max-w-2xl mx-auto">

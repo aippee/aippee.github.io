@@ -250,6 +250,89 @@ const Palvelut = () => {
         </div>
       </div>
 
+      {/* Verkkokurssit Section */}
+      <div id="verkkokurssit" className="py-12 md:py-16 bg-[#f8f7f5]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center mb-12 md:mb-16">
+            <div className="relative overflow-hidden md:order-1">
+              <img
+                src={`${import.meta.env.BASE_URL}lovable-uploads/verkkokurssit.webp`}
+                alt="Nainen seisoo kaari-ikkunan edessä valoisassa huoneessa - Verkkokurssit"
+                className="w-full h-auto aspect-[3/2] object-cover"
+                loading="lazy"
+                width="2048"
+                height="1365"
+              />
+            </div>
+            <div className="prose max-w-none md:order-2">
+              <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">
+                {currentLang === 'fi' ? 'VERKKOKURSSIT' : 'ONLINE COURSES'}
+              </h2>
+              <p className="mb-4 text-base md:text-lg font-light leading-relaxed text-gray-700">
+                Verkkokurssimme yhdistävät psykologista tietoa parisuhteesta sekä harjoituksia, joissa pääset heti
+                soveltamaan oppimaasi itsesi ja parisuhteesi tutkiskeluun ja kehittämiseen.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+            <div className="bg-white p-6 md:p-10 flex flex-col">
+              <h3 className="text-xl md:text-2xl font-bold mb-4">RIIDASTA YHTEYTEEN</h3>
+              <p className="mb-4 text-base md:text-lg font-light leading-relaxed text-gray-700">
+                Riidasta yhteyteen -kurssimme on tehty sinulle, joka haluat harjoitella ratkaisemaan parisuhteen
+                ristiriitoja ja pysäyttämään yhdessä kumppanisi kanssa niiden toistuvia kehiä. Opit tunnistamaan sitä,
+                miten yleensä haastavassa tilanteessa reagoit, sekä sen, millaisista tunteista toistuvat toimintamallit
+                kumpuavat. Kurssin avulla voit ymmärtää itseäsi ja kumppaniasi paremmin sekä luoda kestävämpää
+                tunneyhteyttä välillenne.
+              </p>
+              <p className="mb-6 text-base md:text-lg font-light leading-relaxed text-gray-700">
+                Tunnin mittainen kurssi sisältää paljon psykologista tietoa riitelystä ja sen taustateoriasta sekä
+                harjoituksia, joissa voit soveltaa oppimaasi juuri sinun parisuhteeseesi ja ymmärtää syvemmin itseäsi
+                ja kumppaniasi.
+              </p>
+              <div className="mt-auto flex flex-col sm:flex-row sm:items-center gap-4">
+                <p className="font-semibold text-base md:text-lg">Kurssin hinta: 75 €</p>
+                <a
+                  href="https://lavpsykologipalvelut.thinkific.com/courses/riidasta_yhteyteen"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-elegant inline-block text-center sm:ml-auto"
+                >
+                  {currentLang === 'fi' ? 'OSTA NYT' : 'BUY NOW'}
+                </a>
+              </div>
+            </div>
+
+            <div className="bg-white p-6 md:p-10 flex flex-col">
+              <h3 className="text-xl md:text-2xl font-bold mb-4">MENNEISYYDEN MERKITYS PARISUHTEESSA</h3>
+              <p className="mb-4 text-base md:text-lg font-light leading-relaxed text-gray-700">
+                Tämä kurssi auttaa sinua ymmärtämään, miten menneisyyden ja lapsuuden kokemukset vaikuttavat siihen,
+                miten parisuhteessa toimimme ja käyttäydymme. Kurssilla saat tietoa muun muassa kiintymyssuhdemalleista
+                sekä siitä, miten nämä mallit voivat näyttäytyä parisuhteen vuorovaikutuksessa. Opit myös esimerkiksi
+                sen, miten vanhempiesi parisuhde ja siitä saatu malli voi vaikuttaa sinuun parisuhteessa, sekä sen,
+                mikä on itsetunnon rooli parisuhteessa.
+              </p>
+              <p className="mb-6 text-base md:text-lg font-light leading-relaxed text-gray-700">
+                Tunnin mittainen kurssi on todellinen syväsukellus siihen, miten lapsuudenkokemuksemme voivat näkyä
+                meissä aikuisina ja parisuhteessa. Voit käydä kurssin itseksesi tai yhdessä kumppanisi kanssa. Jaetut
+                oivallukset auttavat teitä ymmärtämään toisianne syvemmin.
+              </p>
+              <div className="mt-auto flex flex-col sm:flex-row sm:items-center gap-4">
+                <p className="font-semibold text-base md:text-lg">Kurssin hinta: 75 €</p>
+                <a
+                  href="https://lavpsykologipalvelut.thinkific.com/courses/menneisyys"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-elegant inline-block text-center sm:ml-auto"
+                >
+                  {currentLang === 'fi' ? 'OSTA NYT' : 'BUY NOW'}
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Contact Form Section */}
       <div className="w-full bg-[#131313] py-16 md:py-20">
         <div className="max-w-2xl mx-auto px-4 sm:px-6">
