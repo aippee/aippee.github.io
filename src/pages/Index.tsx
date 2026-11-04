@@ -143,13 +143,13 @@ const Index = () => {
           {/* Dating Reset announcement */}
           <a
             href={createLink("/dating-reset")}
-            className="group mb-8 md:mb-10 inline-flex items-center gap-3 border border-white/60 bg-black/20 backdrop-blur-sm px-5 py-2.5 text-white text-[11px] md:text-xs uppercase tracking-[0.2em] hover:bg-white/10 transition-all duration-300"
+            className="group mb-8 md:mb-10 max-w-md md:max-w-none inline-flex items-center justify-center text-center gap-3 border border-white/60 bg-black/20 backdrop-blur-sm px-5 py-2.5 text-white text-[11px] md:text-xs uppercase tracking-[0.2em] hover:bg-white/10 transition-all duration-300"
           >
             <span className="relative flex h-2 w-2 shrink-0">
               <span className="absolute inline-flex h-full w-full rounded-full bg-[#d8cfae] opacity-75 animate-ping" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-[#d8cfae]" />
             </span>
-            <span>
+            <span className="text-center leading-relaxed">
               {currentLang === 'fi' ? 'Uutuus: Dating Reset – sinkkunaisten ryhmävalmennus, odotuslista auki' : 'New: Dating Reset – group coaching for single women, waitlist open'}
             </span>
             <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
