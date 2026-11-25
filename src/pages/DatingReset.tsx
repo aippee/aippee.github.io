@@ -70,7 +70,8 @@ const SESSIONS = [
   },
 ];
 
-const CTA_LABEL = "Varaa maksuton kartoituspuhelu →";
+// No-break space keeps the arrow from wrapping onto a line of its own on narrow phones
+const CTA_LABEL = "Varaa maksuton kartoituspuhelu\u00A0→";
 
 const DatingReset = () => {
   const pageUrl = window.location.href;
