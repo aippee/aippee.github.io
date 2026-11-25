@@ -1,78 +1,107 @@
-import React, { useState } from "react";
+import React from "react";
 import { Helmet } from "react-helmet-async";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { toast } from "sonner";
 
-const FORMAT_OPTIONS = ["Helsinki", "Etä", "Molemmat sopii"];
+const CALENDLY_URL = "https://calendly.com/helmi-psykologipalveluvalo/15min-puhelu";
 
-// Google Apps Script web app (see google-apps-script/dating-reset-waitlist.gs)
-const WAITLIST_ENDPOINT = "https://script.google.com/macros/s/AKfycbzI_4NeeVXzXeA5l-MIv2NVqSDo9ovh4N19H6XaMuhZ4aCe7vPWGOHOrMj4aYSYibZ3/exec";
+const RECOGNISE_ITEMS = [
+  "Olet joustanut liikaa rajoistasi ja tarpeistasi tapailusuhteissasi",
+  "Pohdit herkästi, ovatko tarpeesi ja tunteesi liikaa",
+  "Miellytät ja mukaudut herkästi kun ihastut, samalla unohtaen itsesi tai omat tarpeesi",
+  "Tapailuun tulee helposti etäisyyttä tai kitkaa, etkä aina tiedä, mitä asialle voisi tehdä",
+  "Olet kyllästynyt selviämään hämmentävien deittailukuvioiden kanssa itseksesi, kaipaat selkeyttä ja uutta suuntaa rakkauteen",
+];
+
+const BENEFITS = [
+  {
+    icon: "🔎",
+    title: "Selkeyttä kuvioihisi.",
+    text: "Saat sanat sille, mikä suhteissasi toistuu, ja ymmärrät, mistä tutut toimintatapasi tulevat. Ymmärrys mahdollistaa kestävän muutoksen.",
+  },
+  {
+    icon: "🧭",
+    title: "Tiedon siitä, mitä haluat.",
+    text: "Opit tunnistamaan, millaisessa suhteessa tunnet olosi hyväksi ja arvostetuksi, ja osaat sanoa tarpeesi ja rajasi ääneen.",
+  },
+  {
+    icon: "🛠",
+    title: "Käytännön keinoja toimia toisin.",
+    text: "Pääset harjoittelemaan oman itsesi puolella olemista sekä muita deittailussa tärkeitä vuorovaikutustaitoja.",
+  },
+  {
+    icon: "🤝",
+    title: "Ryhmän tuen.",
+    text: "Psykologien ja muiden ryhmäläisten luomassa turvallisessa tilassa on mahdollista oppia ja oivaltaa yhdessä, sekä tuntea että et ole yksin kokemustesi kanssa.",
+  },
+];
+
+const FIT_ITEMS = [
+  "olet tällä hetkellä sinkku ja toivot kestävää parisuhdetta",
+  "huomaat, että samat kuviot toistuvat deittailussasi, ja haluat tutkia niitä uteliaasti",
+  "olet valmis puhumaan kokemuksistasi ryhmässä omaan tahtiisi ja kuuntelemaan muita",
+  "haluat tehdä työtä itsesi eteen etkä etsi pelkkiä deittivinkkejä",
+  "elämäntilanteesi on juuri nyt riittävän vakaa, ettei sinulla ole akuuttia kriisiä tai traumaoireilua. Ryhmän teemat voivat herättää paljon tunteita, joten siihen on hyvä tulla, kun on voimia kohdata niitä.",
+];
+
+const SESSIONS = [
+  {
+    date: "20.1.",
+    title: "Mikä vetää puoleensa ja miksi?",
+    text: "Tutustu ryhmään ja ymmärrä kiintymyksesi juuria – ymmärrys auttaa sinua tekemään valintoja itsestäsi käsin.",
+  },
+  {
+    date: "3.2.",
+    title: "Miksi sama kuvio toistuu?",
+    text: "Tunnistetaan omia toimintatapoja ja tutkitaan, mistä ne tulevat.",
+  },
+  {
+    date: "17.2.",
+    title: "Suhde itseesi.",
+    text: "Ymmärrät miten suhde itsesi kanssa määrittelee toimintaasi rakkaudessa, harjoittelet omalla puolellasi olemista.",
+  },
+  {
+    date: "3.3.",
+    title: "Tarpeet ja rajat.",
+    text: "Harjoitellaan saamaan yhteys ja jakamaan se, mitä toivot ja mikä tuntuu sinulle sopivalta.",
+  },
+  {
+    date: "17.3.",
+    title: "Uusi luku rakkaudessa.",
+    text: "Yhteisen matkan päätös: viedään opit ja oivallukset oikeaan elämään.",
+  },
+];
+
+const CTA_LABEL = "Varaa maksuton kartoituspuhelu →";
 
 const DatingReset = () => {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [format, setFormat] = useState("");
-  const [consent, setConsent] = useState(false);
-
   const pageUrl = window.location.href;
-  const heroImageUrl = `${import.meta.env.BASE_URL}lovable-uploads/IMG_5104.JPG`;
+  const base = import.meta.env.BASE_URL;
+  const heroImageUrl = `${base}lovable-uploads/IMG_5104.JPG`;
+  const ainoImageUrl = `${base}lovable-uploads/dating-reset-aino.jpg`;
+  const helmiImageUrl = `${base}lovable-uploads/dating-reset-helmi.jpg`;
+  const videoUrl = `${base}videos/dating-reset-esittely.mp4`;
+  const videoPosterUrl = `${base}videos/dating-reset-esittely-poster.jpg`;
 
-  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (!consent) return;
-    if (!format) {
-      toast.error("Valitse toteutustapa.");
-      return;
-    }
-    setIsSubmitting(true);
-
-    const form = event.currentTarget;
-    const formData = new FormData(form);
-    formData.append("toteutustapa", format);
-    formData.append("suostumus", "Kyllä");
-    const body = new URLSearchParams();
-    formData.forEach((value, key) => body.append(key, String(value)));
-
-    try {
-      const response = await fetch(WAITLIST_ENDPOINT, {
-        method: "POST",
-        body,
-      });
-      const data = await response.json();
-
-      if (data.success) {
-        toast.success("Kiitos! Olet nyt odotuslistalla. 🤍");
-        form.reset();
-        setFormat("");
-        setConsent(false);
-      } else {
-        toast.error("Jokin meni pieleen. Yritä uudelleen.");
-        console.log("Error", data);
-      }
-    } catch (error) {
-      toast.error("Jokin meni pieleen. Yritä uudelleen.");
-      console.log("Error", error);
-    }
-
-    setIsSubmitting(false);
-  };
-
+  const sectionClass = "py-12 md:py-16";
+  const containerClass = "max-w-3xl mx-auto px-4 sm:px-6";
+  const headingClass = "text-2xl md:text-3xl font-bold mb-6";
   const textClass = "mb-4 text-base md:text-lg font-light leading-relaxed text-gray-700";
+  const listClass =
+    "list-disc pl-5 space-y-3 text-base md:text-lg font-light leading-relaxed text-gray-700 marker:text-[#a9a186]";
   const linkClass = "underline underline-offset-2 hover:text-black transition-colors";
 
   return (
     <div className="min-h-screen">
       <Helmet>
-        <title>Dating Reset – ryhmävalmennus sinkkunaisille | Aino Pekkarinen</title>
+        <title>Dating Reset – ryhmävalmennus sinkkunaisille Helsingissä | Aino Pekkarinen</title>
         <meta
           name="description"
-          content="Dating Reset on sinkkunaisille suunnattu, kahden psykologin ohjaama ryhmävalmennus. Pilottiryhmä tammi–maaliskuussa 2027 Helsingissä tai etänä."
+          content="Dating Reset on kahden psykologin ohjaama viiden tapaamisen ryhmävalmennus sinkkunaisille. Ensimmäinen pilottiryhmä alkaa Helsingissä 20.1.2027. Varaa maksuton kartoituspuhelu."
         />
         <link rel="canonical" href={pageUrl} />
-        <meta property="og:title" content="Dating Reset ❤️‍🔥 Uusi suunta rakkauselämällesi" />
+        <meta property="og:title" content="Dating Reset ❤️‍🔥 Ryhmävalmennus sinkkunaisille" />
         <meta
           property="og:description"
-          content="Kahden psykologin ohjaama ryhmävalmennus sinkkunaisille. Liity odotuslistalle!"
+          content="Kahden psykologin ohjaama viiden tapaamisen ryhmävalmennus Helsingissä. Pilottiryhmä alkaa 20.1.2027 – vain 8 paikkaa."
         />
         <meta property="og:image" content={heroImageUrl} />
         <meta property="og:url" content={pageUrl} />
@@ -80,7 +109,7 @@ const DatingReset = () => {
         <meta property="og:locale" content="fi_FI" />
       </Helmet>
 
-      {/* Hero Section */}
+      {/* Hero */}
       <div className="relative h-[60vh] md:h-[80vh]">
         <img
           src={heroImageUrl}
@@ -101,181 +130,223 @@ const DatingReset = () => {
       </div>
 
       {/* Intro */}
-      <div className="py-12 md:py-16 bg-white">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6">
-          <h2 className="text-2xl md:text-3xl font-bold mb-6">DATING RESET ❤️‍🔥</h2>
+      <div className={`${sectionClass} bg-white`}>
+        <div className={containerClass}>
+          <h2 className={headingClass}>
+            Toistuvatko samat kuviot tapailusuhteissasi? Haluatko tuntea itsesi hyväksi ja arvostetuksi ja
+            olla omalla puolellasi rakkaudessa?
+          </h2>
           <p className={textClass}>
-            Tuntuuko, että samat kaavat toistuvat deittailussa ja ihmissuhteissa? Haluaisitko tuntea olosi
-            itsevarmaksi ja turvalliseksi tapailusuhteissasi? Oletko valmis deittailemaan tinkimättä omista
-            tarpeista ja rajoistasi?
+            Alussa kaikki tuntuu lupaavalta. Sitten huomaat taas odottavasi viestiä, arvailevasi toisen
+            tunteita ja miettiväsi, oletko liian vaativa, kun haluat tietää, missä mennään. Kun tapailu
+            päättyy, kysyt itseltäsi: <em>miten päädyin taas tähän?</em>
           </p>
           <p className={textClass}>
-            Dating Reset on sinkkunaisille suunnattu, kahden psykologin ohjaama ryhmävalmennus, jossa
-            syvennytään omiin suhdekaavoihin, kiintymyssuhteisiin sekä omiin tarpeisiin ja toiveisiin.
+            Tämä ei tarkoita, että sinussa olisi jotain vikaa. Kuvioilla on usein selitys, ja kun sen
+            ymmärtää, voi alkaa valita toisin.
           </p>
           <p className={textClass}>
-            Tavoitteena on ymmärtää itseäsi paremmin, jättää toimimattomat deittikuviot taakse ja ottaa
-            askelia kohti rakkaussuhdetta, jossa voit hyvin. 🤍
+            <strong className="font-semibold">
+              Dating Reset on kahden psykologin ohjaama viiden tapaamisen ryhmävalmennus sinkkunaisille.
+            </strong>{" "}
+            Valmennuksella opit ymmärtämään kiintymyssuhdekaavojesi logiikkaa ja opit deittailemaan niin,
+            että omilla toiveillasi ja tarpeillasi on tilaa.
+          </p>
+          <p className={`${textClass} mt-8`}>
+            📍 Helsinki · 🗓 Ensimmäinen pilottiryhmä alkaa{" "}
+            <strong className="font-semibold">20.1.2027</strong>
+          </p>
+          <p className="mb-8 text-base md:text-lg font-semibold leading-relaxed text-gray-900">
+            Tarjoamme tämän mahdollisuuden nyt vain 8:lle henkilölle!
+          </p>
+          <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="btn-elegant-dark">
+            {CTA_LABEL}
+          </a>
+          <p className="mt-4 text-sm md:text-base font-light italic text-gray-600">
+            Puhelu ei sido mihinkään.
           </p>
         </div>
       </div>
 
-      {/* Details */}
-      <div className="py-12 md:py-16 bg-[#f8f7f5]">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6">
-          <h2 className="text-xl md:text-2xl font-bold mb-6">
-            ✨ Ensimmäinen pilottiryhmä käynnistyy tammikuussa 2027!
-          </h2>
-          <ul className="space-y-2 text-base md:text-lg font-light text-gray-700">
-            <li><strong className="font-semibold">Milloin:</strong> tammi–maaliskuu 2027</li>
-            <li><strong className="font-semibold">Missä:</strong> Helsingissä tai etänä</li>
-            <li><strong className="font-semibold">Toteutus:</strong> Ohjattu ryhmämuotoinen toteutustapa</li>
+      {/* Do you recognise yourself */}
+      <div className={`${sectionClass} bg-[#f8f7f5]`}>
+        <div className={containerClass}>
+          <h2 className={headingClass}>Tunnistatko itsesi näistä?</h2>
+          <ul className={listClass}>
+            {RECOGNISE_ITEMS.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
           </ul>
+          <p className="mt-8 text-base md:text-lg font-semibold leading-relaxed text-gray-900">
+            Jos tunnistit itsesi, Dating Reset on tehty sinulle.
+          </p>
+        </div>
+      </div>
+
+      {/* What you get */}
+      <div className={`${sectionClass} bg-white`}>
+        <div className={containerClass}>
+          <h2 className={headingClass}>Mitä saat mukaasi</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-8">
+            {BENEFITS.map((benefit) => (
+              <div key={benefit.title}>
+                <div className="text-3xl mb-3" aria-hidden="true">
+                  {benefit.icon}
+                </div>
+                <p className="text-base md:text-lg font-light leading-relaxed text-gray-700">
+                  <strong className="font-semibold text-gray-900">{benefit.title}</strong> {benefit.text}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Who it is for */}
+      <div className={`${sectionClass} bg-[#f8f7f5]`}>
+        <div className={containerClass}>
+          <h2 className={headingClass}>Kenelle Dating Reset on tehty? 💛</h2>
+          <p className={textClass}>
+            Haluamme koota ryhmän huolella, jotta osallistujat saavat siitä parhaan mahdollisen hyödyn.
+          </p>
+          <p className="mb-4 text-base md:text-lg font-semibold leading-relaxed text-gray-900">
+            Dating Reset sopii sinulle, jos
+          </p>
+          <ul className={listClass}>
+            {FIT_ITEMS.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+          <p className={`${textClass} mt-8 mb-0`}>
+            Epävarma, sopiiko ryhmä sinulle juuri nyt? Puhelussa voit pohtia sitä rauhassa psykologin
+            kanssa. Ei ole vääriä kysymyksiä tai ajatuksia, vaan pohdimme näitä kanssasi mielellämme.
+          </p>
+        </div>
+      </div>
+
+      {/* Schedule */}
+      <div className={`${sectionClass} bg-white`}>
+        <div className={containerClass}>
+          <h2 className={headingClass}>Viisi tapaamista, yksi selkeä suunta</h2>
+          <ol className="border-t border-gray-200">
+            {SESSIONS.map((session) => (
+              <li
+                key={session.date}
+                className="grid grid-cols-1 sm:grid-cols-[9rem_1fr] gap-1 sm:gap-6 py-5 border-b border-gray-200"
+              >
+                <p className="text-base md:text-lg font-semibold text-gray-900 whitespace-nowrap">
+                  {session.date} klo 16–18
+                </p>
+                <p className="text-base md:text-lg font-light leading-relaxed text-gray-700">
+                  <strong className="font-semibold text-gray-900">{session.title}</strong> {session.text}
+                </p>
+              </li>
+            ))}
+          </ol>
         </div>
       </div>
 
       {/* Coaches */}
-      <div className="py-12 md:py-16 bg-white">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6">
-          <h2 className="text-2xl md:text-3xl font-bold mb-6">TUTUSTU VALMENTAJIIN 🤍</h2>
-          <p className={textClass}>
-            <strong className="font-semibold">Aino Pekkarinen</strong> – Pariterapeutti ja ihmissuhdepsykologi,
-            jonka erityisosaamista ovat kiintymyssuhdeteemat ja deittailu- ja parisuhteiden haasteiden
-            ymmärtäminen sekä ratkaiseminen. Lue Ainosta lisää{" "}
-            <a
-              href="https://www.instagram.com/ihmissuhdepsykologi/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={linkClass}
-            >
-              täältä
-            </a>
-            .
+      <div className={`${sectionClass} bg-[#f8f7f5]`}>
+        <div className={containerClass}>
+          <h2 className={`${headingClass} mb-8`}>Ohjaajinasi kaksi psykologia 🤍</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+            <div className="flex sm:block items-start gap-5">
+              <img
+                src={ainoImageUrl}
+                alt="Aino Pekkarinen"
+                className="w-1/3 sm:w-full shrink-0 aspect-[4/5] object-cover sm:mb-5"
+                loading="lazy"
+                width="800"
+                height="1000"
+              />
+              <p className={`${textClass} mb-0`}>
+                <strong className="font-semibold text-gray-900">Aino Pekkarinen</strong>, pariterapeutti ja
+                ihmissuhdepsykologi. Erityisosaamistani ovat kiintymyssuhteet sekä deittailun ja
+                parisuhteiden toistuvat haasteet.{" "}
+                <a
+                  href="https://www.instagram.com/ihmissuhdepsykologi/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={linkClass}
+                >
+                  Lue lisää Ainosta
+                </a>
+              </p>
+            </div>
+            <div className="flex sm:block items-start gap-5">
+              <img
+                src={helmiImageUrl}
+                alt="Helmi Silvennoinen"
+                className="w-1/3 sm:w-full shrink-0 aspect-[4/5] object-cover sm:mb-5"
+                loading="lazy"
+                width="800"
+                height="1000"
+              />
+              <p className={`${textClass} mb-0`}>
+                <strong className="font-semibold text-gray-900">Helmi Silvennoinen</strong>, psykologi ja
+                lyhytterapeutti. Erityisosaamistani ovat itsetuntemuksen ja itsevarmuuden vahvistaminen
+                sekä ryhmätyöskentely.{" "}
+                <a
+                  href="https://www.instagram.com/psykologihelmi/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={linkClass}
+                >
+                  Lue lisää Helmistä
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Join */}
+      <div className="w-full bg-[#131313] py-16 md:py-20 text-white">
+        <div className={`${containerClass} text-center`}>
+          <h2 className="text-2xl md:text-3xl font-light mb-8 tracking-wide">
+            Lähde mukaan ensimmäiseen ryhmään – vain 8 paikkaa jaossa 💌
+          </h2>
+          <p className="text-base md:text-lg font-semibold leading-relaxed mb-2">
+            Dating Reset · 5 ohjattua kahden tunnin ryhmätapaamista Helsingissä · 890{"\u00A0"}€
           </p>
-          <p className={textClass}>
-            <strong className="font-semibold">Helmi Silvennoinen</strong> – Psykologi ja lyhytterapeutti, jonka
-            erityisosaamista ovat itsetuntemuksen ja itsevarmuuden vahvistaminen sekä voimaannuttava
-            ryhmätyöskentely. Lue Helmistä lisää{" "}
-            <a
-              href="https://www.instagram.com/psykologihelmi/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={linkClass}
-            >
-              täältä
-            </a>
-            .
+          <p className="text-base md:text-lg font-light italic text-gray-300 mb-8">
+            Voit maksaa myös kahdessa erässä (2{"\u00A0"}×{"\u00A0"}445{"\u00A0"}€).
+          </p>
+          <p className="text-base md:text-lg font-light leading-relaxed text-gray-300 mb-10 text-left sm:text-center">
+            Jätä yhteystietosi, niin toinen valmentajista soittaa sinulle. Puhelussa voit kertoa, mikä
+            herätti kiinnostuksesi ryhmää kohtaan ja mitä toivoisit valmennukselta, sekä voit kysyä
+            ryhmästä ja pohtia yhdessä psykologin kanssa, sopiiko Dating Reset sinulle. Päätät
+            osallistumisesta vasta puhelun jälkeen, eli puhelu ei sido sinua mihinkään.
+          </p>
+          <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="btn-elegant-solid-light">
+            {CTA_LABEL}
+          </a>
+          <p className="mt-6 text-sm md:text-base font-light italic text-gray-400">
+            Pilottiryhmän paikkamäärä on rajattu.
           </p>
         </div>
       </div>
 
-      {/* Waitlist Form */}
-      <div id="odotuslista" className="w-full bg-[#131313] py-16 md:py-20">
-        <div className="max-w-2xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-10 text-white">
-            <h2 className="text-2xl md:text-3xl font-light mb-6 tracking-wider">KIINNOSTUITKO? 💌</h2>
-            <p className="text-base md:text-lg font-light leading-relaxed text-gray-300 mb-4">
-              Liity odotuslistalle, niin kuulet ensimmäisten joukossa valmennuksen tarkemmasta sisällöstä,
-              toteutuksesta ja ilmoittautumisesta.
-            </p>
-            <p className="text-base md:text-lg font-semibold leading-relaxed mb-4">
-              Odotuslistalaisena saat myös mahdollisuuden ilmoittautua mukaan Early Bird -etuhintaan!
-            </p>
-            <p className="text-sm md:text-base font-light text-gray-400">
-              Odotuslistalle liittyminen ei sido sinua mihinkään.
-            </p>
+      {/* Video */}
+      <div className={`${sectionClass} bg-white`}>
+        <div className={containerClass}>
+          <video
+            className="w-full aspect-video bg-black"
+            controls
+            playsInline
+            preload="none"
+            poster={videoPosterUrl}
+            aria-label="Dating Reset -esittelyvideo"
+          >
+            <source src={videoUrl} type="video/mp4" />
+            <a href={videoUrl}>Katso Dating Reset -esittelyvideo</a>
+          </video>
+          <div className="mt-8 text-center">
+            <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="btn-elegant-dark">
+              {CTA_LABEL}
+            </a>
           </div>
-
-          <form onSubmit={onSubmit} className="space-y-8">
-            {/* Spam honeypot – hidden from real users */}
-            <input
-              type="text"
-              name="website"
-              tabIndex={-1}
-              autoComplete="off"
-              aria-hidden="true"
-              className="hidden"
-            />
-            <Input
-              name="name"
-              type="text"
-              required
-              placeholder="Nimi"
-              className="elegant-input text-white placeholder:text-gray-400"
-            />
-            <Input
-              name="email"
-              type="email"
-              required
-              placeholder="Sähköposti"
-              className="elegant-input text-white placeholder:text-gray-400"
-            />
-            <Input
-              name="phone"
-              type="tel"
-              required
-              placeholder="Puhelinnumero"
-              className="elegant-input text-white placeholder:text-gray-400"
-            />
-            <Input
-              name="ika"
-              type="number"
-              min={18}
-              max={120}
-              required
-              placeholder="Ikä"
-              className="elegant-input text-white placeholder:text-gray-400"
-            />
-
-            <fieldset>
-              <legend className="text-gray-300 font-light mb-3">Toteutustapa</legend>
-              <div className="flex flex-wrap gap-3" role="radiogroup">
-                {FORMAT_OPTIONS.map((option) => {
-                  const selected = format === option;
-                  return (
-                    <button
-                      key={option}
-                      type="button"
-                      role="radio"
-                      aria-checked={selected}
-                      onClick={() => setFormat(option)}
-                      className={`px-5 py-2 border text-sm tracking-wider uppercase transition-all ${
-                        selected
-                          ? "bg-white text-[#131313] border-white"
-                          : "border-gray-500 text-gray-300 hover:border-white hover:text-white"
-                      }`}
-                    >
-                      {option}
-                    </button>
-                  );
-                })}
-              </div>
-            </fieldset>
-
-            <label className="flex items-start gap-3 cursor-pointer text-gray-300 font-light text-sm md:text-base">
-              <input
-                type="checkbox"
-                checked={consent}
-                onChange={(e) => setConsent(e.target.checked)}
-                className="mt-1 h-4 w-4 shrink-0 accent-white cursor-pointer"
-                required
-              />
-              <span className="italic">
-                Jättämällä yhteystietoni annan suostumukseni siihen, että minuun voidaan olla yhteydessä
-                Dating Reset -valmennukseen liittyen.
-              </span>
-            </label>
-
-            <div className="flex justify-center pt-4">
-              <Button
-                type="submit"
-                className="btn-elegant-light disabled:opacity-40 disabled:cursor-not-allowed"
-                disabled={isSubmitting || !consent}
-              >
-                {isSubmitting ? "Lähetetään..." : "Liity odotuslistalle ❤️‍🔥"}
-              </Button>
-            </div>
-          </form>
         </div>
       </div>
 

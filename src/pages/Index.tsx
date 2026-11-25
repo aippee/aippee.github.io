@@ -150,7 +150,7 @@ const Index = () => {
               <span className="relative inline-flex h-2 w-2 rounded-full bg-[#d8cfae]" />
             </span>
             <span className="text-center leading-relaxed">
-              {currentLang === 'fi' ? 'Uutuus: Dating Reset – sinkkunaisten ryhmävalmennus, odotuslista auki' : 'New: Dating Reset – group coaching for single women, waitlist open'}
+              {currentLang === 'fi' ? 'Uutuus: Dating Reset – sinkkunaisten ryhmävalmennus alkaa 20.1.2027' : 'New: Dating Reset – group coaching for single women starts 20 January 2027'}
             </span>
             <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
           </a>
@@ -193,11 +193,11 @@ const Index = () => {
           <h2 className="hero-header text-4xl md:text-6xl mb-6">Dating Reset</h2>
           <p className="font-light text-base md:text-lg text-gray-300 leading-relaxed mb-10 max-w-2xl mx-auto">
             {currentLang === 'fi'
-              ? 'Sinkkunaisille suunnattu, kahden psykologin ohjaama ryhmävalmennus. Liity odotuslistalle ja kuule ensimmäisten joukossa lisää – odotuslistalaisena saat myös mahdollisuuden Early Bird -etuhintaan.'
-              : 'A group coaching programme for single women, led by two psychologists. Join the waitlist to hear more first – waitlist members also get access to an Early Bird price.'}
+              ? 'Kahden psykologin ohjaama viiden tapaamisen ryhmävalmennus sinkkunaisille Helsingissä. Ensimmäinen pilottiryhmä alkaa 20.1.2027 – mukaan mahtuu vain 8 henkilöä.'
+              : 'A five-session group coaching programme for single women in Helsinki, led by two psychologists. The first pilot group starts on 20 January 2027 – only 8 places available.'}
           </p>
           <a href={createLink("/dating-reset")} className="btn-elegant-light inline-block">
-            {currentLang === 'fi' ? 'Liity odotuslistalle ❤️‍🔥' : 'Join the waitlist ❤️‍🔥'}
+            {currentLang === 'fi' ? 'Tutustu valmennukseen ❤️‍🔥' : 'Read more ❤️‍🔥'}
           </a>
         </div>
       </div>

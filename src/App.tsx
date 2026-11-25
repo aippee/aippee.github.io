@@ -12,7 +12,6 @@ import Minusta from "./pages/Minusta";
 import Palvelut from "./pages/Palvelut";
 import Yhteydenotto from "./pages/Yhteydenotto";
 import DatingReset from "./pages/DatingReset";
-import DatingResetValmennus from "./pages/DatingResetValmennus";
 import NotFound from "./pages/NotFound";
 import I18nTest from "./components/I18nTest";
 import "./i18n/config";
@@ -88,6 +87,12 @@ const LanguageRedirect = () => {
   return null;
 };
 
+// The landing page first went live at /dating-reset-valmennus; keep that link working
+const DatingResetRedirect = () => {
+  const { lang } = useParams<{ lang: string }>();
+  return <Navigate to={`/${lang}/dating-reset`} replace />;
+};
+
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
@@ -109,7 +114,7 @@ function App() {
                     <Route path="palvelut" element={<Palvelut />} />
                     <Route path="yhteydenotto" element={<Yhteydenotto />} />
                     <Route path="dating-reset" element={<DatingReset />} />
-                    <Route path="dating-reset-valmennus" element={<DatingResetValmennus />} />
+                    <Route path="dating-reset-valmennus" element={<DatingResetRedirect />} />
                     <Route path="i18n-test" element={<I18nTest />} />
                     <Route path="*" element={<NotFound />} />
                   </Routes>
