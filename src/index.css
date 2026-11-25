@@ -118,6 +118,14 @@
   @apply px-8 py-3 border border-white bg-transparent text-white hover:bg-white/10 transition-all duration-300 uppercase text-xs tracking-wider font-normal;
 }
 
+.btn-elegant-dark {
+  @apply inline-block px-8 py-4 border border-[#131313] bg-[#131313] text-white hover:bg-[#131313]/85 transition-all duration-300 uppercase text-xs tracking-wider font-normal text-center;
+}
+
+.btn-elegant-solid-light {
+  @apply inline-block px-8 py-4 border border-white bg-white text-[#131313] hover:bg-white/85 transition-all duration-300 uppercase text-xs tracking-wider font-normal text-center;
+}
+
 .section-title {
   @apply text-2xl md:text-3xl font-normal text-center mb-12 tracking-wide;
 }
