@@ -70,6 +70,15 @@ const SESSIONS = [
   },
 ];
 
+const INCLUDED_ITEMS = [
+  "5\u00A0×\u00A02 tunnin psykologien ohjaamaa ryhmätapaamista Helsingissä, yht. 10 tuntia asiantuntijaohjausta.",
+  "Vertaisryhmän tuki: Seitsemän samassa elämäntilanteessa olevaa naista sinulle tukena, peilinä ja inspiraationa.",
+  "Psykologien suunnittelemat harjoitukset ja kuratoidut lukuvinkit tapaamisten välille.",
+  "Yhteinen WhatsApp-ryhmä osallistujien ja psykologien kanssa tuen sekä oivallusten jakamiseen. Tätä ei tarvitse tehdä yksin!",
+  "Oma Dating Reset -työkirja, jonka harjoitukset ja työkalut jää käyttöösi myös valmennuksen jälkeen.",
+  "Henkilökohtainen Dating Blueprint – oma polkukartta kohti uudenlaisia ihmissuhteita.",
+];
+
 // No-break space keeps the arrow from wrapping onto a line of its own on narrow phones
 const CTA_LABEL = "Varaa maksuton kartoituspuhelu\u00A0→";
 
@@ -309,12 +318,25 @@ const DatingReset = () => {
             Lähde mukaan ensimmäiseen ryhmään – vain 8 paikkaa jaossa 💌
           </h2>
           <p className="text-base md:text-lg font-semibold leading-relaxed mb-2">
-            Dating Reset · 5 ohjattua kahden tunnin ryhmätapaamista Helsingissä · 890{"\u00A0"}€
+            Dating Reset · 890{"\u00A0"}€
           </p>
-          <p className="text-base md:text-lg font-light italic text-gray-300 mb-8">
+          <p className="text-base md:text-lg font-light italic text-gray-300 mb-10">
             Voit maksaa myös kahdessa erässä (2{"\u00A0"}×{"\u00A0"}445{"\u00A0"}€).
           </p>
-          <p className="text-base md:text-lg font-light leading-relaxed text-gray-300 mb-10 text-left sm:text-center">
+          <div className="text-left mb-10">
+            <h3 className="text-xl md:text-2xl font-light tracking-wide mb-5">Mitä saat?</h3>
+            <ul className="list-disc pl-5 space-y-3 text-base md:text-lg font-light leading-relaxed text-gray-300 marker:text-[#d8cfae]">
+              {INCLUDED_ITEMS.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+            <p className="mt-8 text-base md:text-lg font-light leading-relaxed text-gray-300">
+              Valmennuksessa opit tunnistamaan tutut kuviosi ja saat keinoja toimia toisin. Ennen kaikkea
+              saat lisää luottamusta siihen, että voit olla omalla puolellasi deittaillessa ja pitää kiinni
+              siitä, mikä sinulle on tärkeää, silloinkin kun ihastut.
+            </p>
+          </div>
+          <p className="text-base md:text-lg font-light leading-relaxed text-gray-300 mb-10 text-left">
             Jätä yhteystietosi, niin toinen valmentajista soittaa sinulle. Puhelussa voit kertoa, mikä
             herätti kiinnostuksesi ryhmää kohtaan ja mitä toivoisit valmennukselta, sekä voit kysyä
             ryhmästä ja pohtia yhdessä psykologin kanssa, sopiiko Dating Reset sinulle. Päätät
