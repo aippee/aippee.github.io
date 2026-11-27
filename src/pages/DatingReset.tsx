@@ -72,7 +72,7 @@ const SESSIONS = [
 
 const INCLUDED_ITEMS = [
   "5\u00A0×\u00A02 tunnin psykologien ohjaamaa ryhmätapaamista Helsingissä, yht. 10 tuntia asiantuntijaohjausta.",
-  "Vertaisryhmän tuki: Seitsemän samassa elämäntilanteessa olevaa naista sinulle tukena, peilinä ja inspiraationa.",
+  "Samassa tilanteessa olevien ryhmäläisten tuki: seitsemän naista sinulle tukena, peilinä ja inspiraationa.",
   "Psykologien suunnittelemat harjoitukset ja kuratoidut lukuvinkit tapaamisten välille.",
   "Yhteinen WhatsApp-ryhmä osallistujien ja psykologien kanssa tuen sekä oivallusten jakamiseen. Tätä ei tarvitse tehdä yksin!",
   "Oma Dating Reset -työkirja, jonka harjoitukset ja työkalut jää käyttöösi myös valmennuksen jälkeen.",
@@ -318,7 +318,7 @@ const DatingReset = () => {
             Lähde mukaan ensimmäiseen ryhmään – vain 8 paikkaa jaossa 💌
           </h2>
           <p className="text-base md:text-lg font-semibold leading-relaxed mb-2">
-            Dating Reset · 890{"\u00A0"}€
+            Dating Reset · Early Bird -hinta 890{"\u00A0"}€
           </p>
           <p className="text-base md:text-lg font-light italic text-gray-300 mb-10">
             Voit maksaa myös kahdessa erässä (2{"\u00A0"}×{"\u00A0"}445{"\u00A0"}€).
@@ -334,6 +334,14 @@ const DatingReset = () => {
               Valmennuksessa opit tunnistamaan tutut kuviosi ja saat keinoja toimia toisin. Ennen kaikkea
               saat lisää luottamusta siihen, että voit olla omalla puolellasi deittaillessa ja pitää kiinni
               siitä, mikä sinulle on tärkeää, silloinkin kun ihastut.
+            </p>
+          </div>
+          <div className="text-left mb-10 border border-white/25 px-6 py-6 md:px-8 md:py-7">
+            <h3 className="text-xl md:text-2xl font-light tracking-wide mb-3">Tyytyväisyystakuu 🤍</h3>
+            <p className="text-base md:text-lg font-light leading-relaxed text-gray-300">
+              Tämä valmennus on luotu tarjoamaan sinulle parasta mahdollista tukea ihmissuhteisiisi. Jos
+              ensimmäisen tapaamisen jälkeen koet, ettei kurssi sittenkään vastaa tarpeitasi, palautamme
+              osallistumismaksusi kokonaisuudessaan.
             </p>
           </div>
           <p className="text-base md:text-lg font-light leading-relaxed text-gray-300 mb-10 text-left">
